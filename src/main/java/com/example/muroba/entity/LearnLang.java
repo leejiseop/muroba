@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Entity
 @Getter
-public class Question extends TimeStamped{
+public class LearnLang extends TimeStamped{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,11 +15,5 @@ public class Question extends TimeStamped{
     private Member member;
 
     @Column(nullable = false)
-    private String fromLang;
-
-    @Column(nullable = false)
-    private String toLang;
-
-    @Column(nullable = false)
-    private String content;
+    private String learnLang;
 }

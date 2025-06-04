@@ -5,21 +5,22 @@ import lombok.Getter;
 
 @Entity
 @Getter
-public class Question extends TimeStamped{
+public class Answer extends TimeStamped{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "question_id", nullable = false)
+    private Question question;
 
     @ManyToOne
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
     @Column(nullable = false)
-    private String fromLang;
+    private Long upperCommentId;
 
     @Column(nullable = false)
-    private String toLang;
-
-    @Column(nullable = false)
-    private String content;
+    private String comment;
 }

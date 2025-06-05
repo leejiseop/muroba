@@ -1,4 +1,4 @@
-package com.example.muroba.dto;
+package com.example.muroba.dto.response;
 
 import java.time.LocalDateTime;
 

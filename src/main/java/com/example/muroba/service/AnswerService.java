@@ -1,7 +1,7 @@
 package com.example.muroba.service;
 
-import com.example.muroba.dto.AnswerRequestDto;
-import com.example.muroba.dto.AnswerResponseDto;
+import com.example.muroba.dto.request.AnswerRequestDto;
+import com.example.muroba.dto.response.AnswerResponseDto;
 import com.example.muroba.entity.Answer;
 import com.example.muroba.entity.Member;
 import com.example.muroba.entity.Question;

@@ -6,6 +6,8 @@ import com.example.muroba.entity.MemberPoint;
 import com.example.muroba.repository.LikeMemberRepository;
 import com.example.muroba.repository.MemberPointRepository;
 import com.example.muroba.repository.MemberRepository;
+import com.example.muroba.dto.request.MemberCreateRequestDto;
+import com.example.muroba.dto.response.MemberCreateResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,5 +36,30 @@ public class MemberService {
                 level,
                 pt
         );
+    }
+
+    @Transactional
+    public MemberCreateResponseDto createMember(MemberCreateRequestDto dto) {
+        Member member = Member.builder()
+                .email(dto.getEmail())
+                .password(dto.getPassword())
+                .nickname(dto.getNickname())
+                .country(dto.getCountry())
+                .isBlocked(false)
+                .build();
+        Member saved = memberRepository.save(member);
+        return new MemberCreateResponseDto(
+                saved.getId(),
+                saved.getEmail(),
+                saved.getNickname(),
+                saved.getCountry()
+        );
+    }
+
+    @Transactional
+    public void deleteMember(Long memberId) {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new IllegalArgumentException("회원이 존재하지 않습니다."));
+        memberRepository.delete(member);
     }
 } 

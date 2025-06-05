@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.muroba.dto.QuestionRequestDto;
-import com.example.muroba.dto.QuestionResponseDto;
+import com.example.muroba.dto.request.QuestionRequestDto;
+import com.example.muroba.dto.response.QuestionResponseDto;
 import com.example.muroba.service.LikeService;
 import com.example.muroba.service.QuestionService;
 

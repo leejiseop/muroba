@@ -24,16 +24,19 @@ public class QuestionController {
     private final QuestionService questionService;
     private final LikeService likeService;
 
+    // 질문 등록
     @PostMapping
     public QuestionResponseDto createQuestion(@RequestBody QuestionRequestDto dto) {
         return questionService.createQuestion(dto);
     }
 
+    // 질문 조회
     @GetMapping
     public Page<QuestionResponseDto> getQuestions(Pageable pageable) {
         return questionService.getQuestions(pageable);
     }
 
+    // 질문 좋아요 토글
     @PostMapping("/{questionId}/like")
     public boolean toggleLike(@PathVariable Long questionId, @RequestParam Long memberId) {
         return likeService.toggleLikeQuestion(questionId, memberId);

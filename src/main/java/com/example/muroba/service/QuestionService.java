@@ -57,4 +57,20 @@ public class QuestionService {
                         likeQuestionRepository.countByToQuestion(q)
                 ));
     }
-} 
+
+    @Transactional(readOnly = true)
+    public QuestionResponseDto getQuestionById(Long id) {
+        Question q = questionRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("질문이 존재하지 않습니다."));
+        return new QuestionResponseDto(
+                q.getId(),
+                q.getMember().getId(),
+                q.getMember().getNickname(),
+                q.getFromLang(),
+                q.getToLang(),
+                q.getContent(),
+                q.getCreatedAt(),
+                likeQuestionRepository.countByToQuestion(q)
+        );
+    }
+}

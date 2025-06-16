@@ -23,6 +23,7 @@ public class AnswerService {
     private final QuestionRepository questionRepository;
     private final LikeAnswerRepository likeAnswerRepository;
 
+    // 댓글 등록
     @Transactional
     public AnswerResponseDto createAnswer(AnswerRequestDto dto) {
         Member member = memberRepository.findById(dto.getMemberId())
@@ -48,6 +49,7 @@ public class AnswerService {
         );
     }
 
+    // 질문의 댓글 조회
     @Transactional(readOnly = true)
     public List<AnswerResponseDto> getAnswersByQuestion(Long questionId) {
         List<Answer> answers = answerRepository.findByQuestionId(questionId);
@@ -63,6 +65,7 @@ public class AnswerService {
         )).collect(Collectors.toList());
     }
 
+    // 댓글의 대댓글 조회
     @Transactional(readOnly = true)
     public List<AnswerResponseDto> getChildAnswers(Long upperCommentId) {
         List<Answer> answers = answerRepository.findByUpperCommentId(upperCommentId);

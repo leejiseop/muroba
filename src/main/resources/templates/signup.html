@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="/css/muroba.css">
+    <script defer src="/js/signup.js"></script>
+    <style>
+        body { max-width: 400px; margin: 0 auto; padding: 2rem; }
+        input, button { width: 100%; margin: 0.5rem 0; padding: 1rem; font-size: 1rem; }
+    </style>
+</head>
+<body>
+    <h2>회원가입</h2>
+    <form id="signupForm">
+        <input type="email" id="email" placeholder="이메일" required>
+        <input type="password" id="password" placeholder="비밀번호" required>
+        <input type="password" id="passwordConfirm" placeholder="비밀번호 확인" required>
+        <input type="text" id="nickname" placeholder="닉네임" required>
+        <input type="text" id="country" placeholder="국가" required>
+        <button type="submit">회원가입</button>
+    </form>
+    <div id="error" style="color:red;"></div>
+    <script>
+    document.getElementById('signupForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const data = {
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value,
+            passwordConfirm: document.getElementById('passwordConfirm').value,
+            nickname: document.getElementById('nickname').value,
+            country: document.getElementById('country').value
+        };
+        const res = await fetch('/api/members/sign-up', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if (res.ok) {
+            window.location.href = '/';
+        } else {
+            const msg = await res.text();
+            document.getElementById('error').innerText = msg || '회원가입 실패';
+        }
+    });
+    </script>
+</body>
+</html> 

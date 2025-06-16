@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="questionList">
+        <div th:each="question : ${questions}" class="question"
+             th:onclick="'location.href=\'/question/'+${question.id}+'\''">
+            <div th:text="${question.title}">질문 제목</div>
+            <div th:text="${question.summary}">질문 요약</div>
+        </div>
+    </div>
+</body>
+</html> 

@@ -12,11 +12,10 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Member extends TimeStamped{
-
+@Builder
+public class Member extends TimeStamped {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,5 +33,5 @@ public class Member extends TimeStamped{
     private String country;
 
     @Column(nullable = false)
-    private Boolean isBlocked;
+    private boolean isBlocked;
 }

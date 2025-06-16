@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>글쓰기</title>
+    <link rel="stylesheet" href="/css/muroba.css">
+</head>
+<body>
+    <h2>글쓰기</h2>
+    <form id="writeForm">
+        <input type="text" id="title" placeholder="제목" required>
+        <textarea id="content" placeholder="내용" required></textarea>
+        <select id="fromLang" required>
+            <option value="">번역할 언어 선택</option>
+            <option value="ko">한국어</option>
+            <option value="en">영어</option>
+            <option value="ja">일본어</option>
+            <option value="zh">중국어</option>
+        </select>
+        <select id="toLang" required>
+            <option value="">번역될 언어 선택</option>
+            <option value="ko">한국어</option>
+            <option value="en">영어</option>
+            <option value="ja">일본어</option>
+            <option value="zh">중국어</option>
+        </select>
+        <button type="button" onclick="location.href='/main'">취소</button>
+        <button type="submit">등록하기</button>
+    </form>
+    <script>
+    document.getElementById('writeForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const data = {
+            title: document.getElementById('title').value,
+            content: document.getElementById('content').value,
+            fromLang: document.getElementById('fromLang').value,
+            toLang: document.getElementById('toLang').value,
+            memberId: localStorage.getItem('memberId') // 로그인 시 저장된 memberId 사용
+        };
+        const res = await fetch('/api/questions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if (res.ok) {
+            window.location.href = '/main';
+        } else {
+            const errorMsg = await res.text();
+            alert(errorMsg || '글 등록 실패');
+        }
+    });
+    </script>
+</body>
+</html> 

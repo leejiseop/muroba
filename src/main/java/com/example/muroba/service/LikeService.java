@@ -6,37 +6,37 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.muroba.entity.Answer;
 import com.example.muroba.entity.LikeAnswer;
 import com.example.muroba.entity.LikeMember;
-import com.example.muroba.entity.LikeQuestion;
+import com.example.muroba.entity.LikePost;
 import com.example.muroba.entity.Member;
-import com.example.muroba.entity.Question;
+import com.example.muroba.entity.Post;
 import com.example.muroba.repository.AnswerRepository;
 import com.example.muroba.repository.LikeAnswerRepository;
 import com.example.muroba.repository.LikeMemberRepository;
-import com.example.muroba.repository.LikeQuestionRepository;
+import com.example.muroba.repository.LikePostRepository;
 import com.example.muroba.repository.MemberRepository;
-import com.example.muroba.repository.QuestionRepository;
+import com.example.muroba.repository.PostRepository;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class LikeService {
-    private final LikeQuestionRepository likeQuestionRepository;
+    private final LikePostRepository likePostRepository;
     private final LikeAnswerRepository likeAnswerRepository;
     private final LikeMemberRepository likeMemberRepository;
     private final MemberRepository memberRepository;
-    private final QuestionRepository questionRepository;
+    private final PostRepository postRepository;
     private final AnswerRepository answerRepository;
 
     @Transactional
-    public boolean toggleLikeQuestion(Long questionId, Long memberId) {
-        Question question = questionRepository.findById(questionId)
+    public boolean toggleLikePost(Long postId, Long memberId) {
+        Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException("질문이 존재하지 않습니다."));
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new IllegalArgumentException("회원이 존재하지 않습니다."));
-        return likeQuestionRepository.findByToQuestionAndFromMember(question, member)
-                .map(like -> { likeQuestionRepository.delete(like); return false; })
-                .orElseGet(() -> { likeQuestionRepository.save(LikeQuestion.builder().toQuestion(question).fromMember(member).build()); return true; });
+        return likePostRepository.findByToPostAndFromMember(post, member)
+                .map(like -> { likePostRepository.delete(like); return false; })
+                .orElseGet(() -> { likePostRepository.save(LikePost.builder().toPost(post).fromMember(member).build()); return true; });
     }
 
     @Transactional

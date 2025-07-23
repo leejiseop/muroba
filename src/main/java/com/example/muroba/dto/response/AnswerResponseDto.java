@@ -11,7 +11,7 @@ public class AnswerResponseDto {
     private Long id;
     private Long memberId;
     private String nickname;
-    private Long questionId;
+    private Long postId;
     private String comment;
     private Long upperCommentId;
     private LocalDateTime createdAt;

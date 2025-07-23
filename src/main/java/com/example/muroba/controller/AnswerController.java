@@ -31,10 +31,14 @@ public class AnswerController {
     }
 
     // 댓글 조회
-    @GetMapping("/question/{questionId}")
-    public List<AnswerResponseDto> getAnswersByQuestion(@PathVariable Long questionId) {
-        return answerService.getAnswersByQuestion(questionId);
+    @GetMapping("/post/{postId}")
+    public List<AnswerResponseDto> getAnswersByPost(@PathVariable Long postId) {
+        return answerService.getAnswersByPost(postId);
     }
+
+    // 댓글 수정
+
+    // 댓글 삭제
 
     // 댓글의 대댓글 조회
     @GetMapping("/child/{upperCommentId}")

@@ -46,7 +46,6 @@ public class MemberController {
     public ResponseEntity<LoginResponseDto> signIn(@RequestBody LoginRequestDto requestDto) {
 
         LoginResponseDto responseDto = memberService.signIn(requestDto);
-        System.out.println("login OK");
 
         return ResponseEntity.ok(responseDto);
     }

@@ -92,4 +92,8 @@ public class MemberService {
                 .orElseThrow(() -> new IllegalArgumentException("회원이 존재하지 않습니다."));
         memberRepository.delete(member);
     }
+
+    // 전체 멤버 조회
+
+    // 리프레쉬 토큰 갱신
 } 

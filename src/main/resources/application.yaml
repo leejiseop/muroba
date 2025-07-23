@@ -5,11 +5,17 @@ spring:
     ansi:
       enabled: always
   datasource:
-    url: jdbc:h2:tcp://localhost/~/muroba
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/MUROBA_DB?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+    username: root
+    password: mysql1010
+#  datasource:
+#    url: jdbc:h2:tcp://localhost/~/muroba
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
   jpa:
+    show-sql: true
     hibernate:
       ddl-auto: none
     properties:

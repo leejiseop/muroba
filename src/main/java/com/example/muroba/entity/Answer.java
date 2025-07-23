@@ -23,8 +23,8 @@ public class Answer extends TimeStamped{
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "question_id", nullable = false)
-    private Question question;
+    @JoinColumn(name = "post_id", nullable = false)
+    private Post post;
 
     @ManyToOne
     @JoinColumn(name = "member_id", nullable = false)

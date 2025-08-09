@@ -3,7 +3,7 @@ package com.example.muroba.dto.request;
 import lombok.Getter;
 
 @Getter
-public class AnswerRequestDto {
+public class CommentRequestDto {
     private Long memberId;
     private Long postId;
     private String comment;

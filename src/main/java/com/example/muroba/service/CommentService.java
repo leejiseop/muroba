@@ -1,8 +1,8 @@
 package com.example.muroba.service;
 
-import com.example.muroba.dto.request.AnswerRequestDto;
-import com.example.muroba.dto.response.AnswerResponseDto;
-import com.example.muroba.entity.Answer;
+import com.example.muroba.dto.request.CommentRequestDto;
+import com.example.muroba.dto.response.CommentResponseDto;
+import com.example.muroba.entity.Comment;
 import com.example.muroba.entity.Member;
 import com.example.muroba.entity.Post;
 import com.example.muroba.repository.AnswerRepository;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class AnswerService {
+public class CommentService {
     private final AnswerRepository answerRepository;
     private final MemberRepository memberRepository;
     private final PostRepository postRepository;
@@ -25,19 +25,19 @@ public class AnswerService {
 
     // 댓글 등록
     @Transactional
-    public AnswerResponseDto createAnswer(AnswerRequestDto dto) {
+    public CommentResponseDto createAnswer(CommentRequestDto dto) {
         Member member = memberRepository.findById(dto.getMemberId())
                 .orElseThrow(() -> new IllegalArgumentException("회원이 존재하지 않습니다."));
         Post post = postRepository.findById(dto.getPostId())
-                .orElseThrow(() -> new IllegalArgumentException("질문이 존재하지 않습니다."));
-        Answer answer = Answer.builder()
+                .orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
+        Comment comment = Comment.builder()
                 .member(member)
                 .post(post)
                 .comment(dto.getComment())
                 .upperCommentId(dto.getUpperCommentId())
                 .build();
-        Answer saved = answerRepository.save(answer);
-        return new AnswerResponseDto(
+        Comment saved = answerRepository.save(comment);
+        return new CommentResponseDto(
                 saved.getId(),
                 member.getId(),
                 member.getNickname(),
@@ -49,11 +49,11 @@ public class AnswerService {
         );
     }
 
-    // 질문의 댓글 조회
+    // 게시글의 댓글 조회
     @Transactional(readOnly = true)
-    public List<AnswerResponseDto> getAnswersByPost(Long postId) {
-        List<Answer> answers = answerRepository.findByPostId(postId);
-        return answers.stream().map(a -> new AnswerResponseDto(
+    public List<CommentResponseDto> getAnswersByPost(Long postId) {
+        List<Comment> answers = answerRepository.findByPostId(postId);
+        return answers.stream().map(a -> new CommentResponseDto(
                 a.getId(),
                 a.getMember().getId(),
                 a.getMember().getNickname(),
@@ -67,9 +67,9 @@ public class AnswerService {
 
     // 댓글의 대댓글 조회
     @Transactional(readOnly = true)
-    public List<AnswerResponseDto> getChildAnswers(Long upperCommentId) {
-        List<Answer> answers = answerRepository.findByUpperCommentId(upperCommentId);
-        return answers.stream().map(a -> new AnswerResponseDto(
+    public List<CommentResponseDto> getChildAnswers(Long upperCommentId) {
+        List<Comment> answers = answerRepository.findByUpperCommentId(upperCommentId);
+        return answers.stream().map(a -> new CommentResponseDto(
                 a.getId(),
                 a.getMember().getId(),
                 a.getMember().getNickname(),

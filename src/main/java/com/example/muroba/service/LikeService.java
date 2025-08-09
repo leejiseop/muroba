@@ -3,8 +3,8 @@ package com.example.muroba.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.muroba.entity.Answer;
-import com.example.muroba.entity.LikeAnswer;
+import com.example.muroba.entity.Comment;
+import com.example.muroba.entity.LikeComment;
 import com.example.muroba.entity.LikeMember;
 import com.example.muroba.entity.LikePost;
 import com.example.muroba.entity.Member;
@@ -31,7 +31,7 @@ public class LikeService {
     @Transactional
     public boolean toggleLikePost(Long postId, Long memberId) {
         Post post = postRepository.findById(postId)
-                .orElseThrow(() -> new IllegalArgumentException("질문이 존재하지 않습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new IllegalArgumentException("회원이 존재하지 않습니다."));
         return likePostRepository.findByToPostAndFromMember(post, member)
@@ -41,13 +41,13 @@ public class LikeService {
 
     @Transactional
     public boolean toggleLikeAnswer(Long answerId, Long memberId) {
-        Answer answer = answerRepository.findById(answerId)
+        Comment comment = answerRepository.findById(answerId)
                 .orElseThrow(() -> new IllegalArgumentException("답변이 존재하지 않습니다."));
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new IllegalArgumentException("회원이 존재하지 않습니다."));
-        return likeAnswerRepository.findByToAnswerAndFromMember(answer, member)
+        return likeAnswerRepository.findByToAnswerAndFromMember(comment, member)
                 .map(like -> { likeAnswerRepository.delete(like); return false; })
-                .orElseGet(() -> { likeAnswerRepository.save(LikeAnswer.builder().toAnswer(answer).fromMember(member).build()); return true; });
+                .orElseGet(() -> { likeAnswerRepository.save(LikeComment.builder().toAnswer(comment).fromMember(member).build()); return true; });
     }
 
     @Transactional

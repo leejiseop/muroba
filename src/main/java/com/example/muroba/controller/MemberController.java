@@ -6,6 +6,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,20 +26,21 @@ import lombok.RequiredArgsConstructor;
 
 import java.nio.charset.StandardCharsets;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
-@RequestMapping("/api/members")
 public class MemberController {
     private final MemberService memberService;
     private final LikeService likeService;
 
     // 회원 등록
     @PostMapping("/sign-up")
-    public ResponseEntity<MemberCreateResponseDto> createMember(@RequestBody MemberCreateRequestDto requestDto) {
-        MemberCreateResponseDto responseDto = memberService.createMember(requestDto);
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(responseDto);
+    public String createMember(MemberCreateRequestDto requestDto) {
+        System.out.println(requestDto.getNickname());
+//        MemberCreateResponseDto responseDto = memberService.createMember(requestDto);
+//        return ResponseEntity
+//                .status(HttpStatus.CREATED)
+//                .body(responseDto);
+        return "ok";
     }
 
     // 회원 로그인
@@ -51,7 +53,7 @@ public class MemberController {
     }
 
     // 회원 조회
-    @GetMapping("/{memberId}")
+    @GetMapping("/member/{memberId}")
     public MemberProfileDto getProfile(@PathVariable Long memberId) {
         return memberService.getProfile(memberId);
     }
@@ -63,7 +65,7 @@ public class MemberController {
     }
 
     // 회원 탈퇴
-    @DeleteMapping("/{memberId}")
+    @DeleteMapping("/member/{memberId}")
     public void deleteMember(@PathVariable Long memberId) {
         memberService.deleteMember(memberId);
     }

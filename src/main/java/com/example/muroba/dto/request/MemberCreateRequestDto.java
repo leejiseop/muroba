@@ -8,4 +8,4 @@ public class MemberCreateRequestDto {
     private String password;
     private String nickname;
     private String country;
-} 
+}

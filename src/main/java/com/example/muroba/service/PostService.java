@@ -61,7 +61,7 @@ public class PostService {
     @Transactional(readOnly = true)
     public PostResponseDto getPostById(Long id) {
         Post q = postRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("질문이 존재하지 않습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
         return new PostResponseDto(
                 q.getId(),
                 q.getMember().getId(),
@@ -73,4 +73,6 @@ public class PostService {
                 likePostRepository.countByToPost(q)
         );
     }
+
+    // 게시글 수정, 삭제
 }

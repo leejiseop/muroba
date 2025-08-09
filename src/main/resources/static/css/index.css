@@ -47,18 +47,18 @@ body {
   padding-bottom: 70px;
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
 }
-.login.loading button {
+.login.loading .login__button {
   max-height: 100%;
   padding-top: 50px;
 }
-.login.loading button .spinner {
+.login.loading .login__button .spinner {
   opacity: 1;
   top: 40%;
 }
-.login.ok button {
+.login.ok .login__button {
   background-color: #8bc34a;
 }
-.login.ok button .spinner {
+.login.ok .login__button .spinner {
   border-radius: 0;
   border-top-color: transparent;
   border-right-color: transparent;
@@ -111,7 +111,7 @@ body {
   border-bottom: 1px solid #eee;
   padding-bottom: 10px;
 }
-.login button {
+.login .login__button {
   width: 100%;
   height: 100%;
   padding: 10px 10px;
@@ -130,7 +130,7 @@ body {
   transition: all 0.1s ease-out;
   border-bottom-width: 7px;
 }
-.login button .spinner {
+.login .login__button .spinner {
   display: block;
   width: 40px;
   height: 40px;
@@ -148,10 +148,10 @@ body {
     border-radius 0.3s ease;
   box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2);
 }
-.login:not(.loading) button:hover {
+.login:not(.loading) .login__button:hover {
   box-shadow: 0px 1px 3px #2196f3;
 }
-.login:not(.loading) button:focus {
+.login:not(.loading) .login__button:focus {
   border-bottom-width: 4px;
 }
 

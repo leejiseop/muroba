@@ -1,6 +1,5 @@
 package com.example.muroba.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,22 +16,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Answer extends TimeStamped{
+public class LikeComment extends TimeStamped{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "post_id", nullable = false)
-    private Post post;
+    @JoinColumn(name = "to_member_id", nullable = false)
+    private Comment toAnswer;
 
     @ManyToOne
-    @JoinColumn(name = "member_id", nullable = false)
-    private Member member;
-
-    @Column(nullable = false)
-    private Long upperCommentId;
-
-    @Column(nullable = false)
-    private String comment;
+    @JoinColumn(name = "from_member_id", nullable = false)
+    private Member fromMember;
 }

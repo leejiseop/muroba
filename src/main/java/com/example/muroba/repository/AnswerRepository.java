@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.muroba.entity.Answer;
+import com.example.muroba.entity.Comment;
 
-public interface AnswerRepository extends JpaRepository<Answer, Long> {
-    List<Answer> findByPostId(Long postId);
-    List<Answer> findByUpperCommentId(Long upperCommentId);
+public interface AnswerRepository extends JpaRepository<Comment, Long> {
+    List<Comment> findByPostId(Long postId);
+    List<Comment> findByUpperCommentId(Long upperCommentId);
 } 

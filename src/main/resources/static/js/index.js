@@ -1,15 +1,37 @@
-document.getElementById("signup-button").addEventListener("click", function () {
-  alert("hi");
 
-  const email = document.getElementById("signup-email").value
-  const password = document.getElementById("signup-password").value
-  const nickname = document.getElementById("signup-nickname").value
-  const country = document.getElementById("signup-country").value
+// document.getElementById("signup-button").addEventListener("click", function () {
 
-  console.log(email, password, nickname, country)
-  signup();
-});
+//   e.preventDefault();
 
-function signup() {
-  alert("hihihi")
-}
+//   const email = document.getElementById("signup-email").value
+//   const password = document.getElementById("signup-password").value
+//   const nickname = document.getElementById("signup-nickname").value
+//   const country = document.getElementById("signup-country").value
+
+//   console.log(email, password, nickname, country)
+//   signup(email, password, nickname, country);
+// });
+
+// function signup(email, password, nickname, country) {
+
+//   const settings = {
+//     "url": `/sign-up`,
+//     "method": "POST",
+//     "timeout": 0,
+//     "headers": {
+//       "Content-Type": "application/json"
+//     },
+//     "data": JSON.stringify({
+//       "email": email,
+//       "password": password,
+//       "nickname": nickname,
+//       "country": country
+//     }),
+//   };
+
+//   $.ajax(settings).done(function (response) {
+//     alert("회원가입이 완료되었습니다")
+//   }).fail(function (response) {
+//     alert("not ok")
+//   })
+// }

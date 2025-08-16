@@ -32,15 +32,18 @@ public class MemberController {
     private final MemberService memberService;
     private final LikeService likeService;
 
-    // 회원 등록
+    // 회원 등록 - PRG 패턴 적용해보자
     @PostMapping("/sign-up")
     public String createMember(MemberCreateRequestDto requestDto) {
         System.out.println(requestDto.getNickname());
+        System.out.println(requestDto.getEmail());
+        System.out.println(requestDto.getCountry());
+        System.out.println(requestDto.getPassword());
 //        MemberCreateResponseDto responseDto = memberService.createMember(requestDto);
 //        return ResponseEntity
 //                .status(HttpStatus.CREATED)
 //                .body(responseDto);
-        return "ok";
+        return "redirect:/board/write";
     }
 
     // 회원 로그인

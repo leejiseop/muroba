@@ -67,16 +67,17 @@
   <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form id="signup-form">
+        <form id="signup-form" action="/sign-up" method="post">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">회원가입</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
 
           <div class="modal-body">
+
             <!-- 이메일 -->
             <div class="input-group mb-3">
-              <input id="signup-email" type="text" class="form-control" placeholder="email" required />
+              <input id="signup-email" type="text" name="email" class="form-control" placeholder="email" required />
               <button class="btn btn-outline-secondary" type="button" id="get-auth">
                 인증번호 받기
               </button>
@@ -93,19 +94,21 @@
 
             <!-- 비밀번호 -->
             <div class="input-group mb-3">
-              <input id="signup-password" type="text" class="form-control" placeholder="password" required>
+              <input id="signup-password" type="text" name="password" class="form-control" placeholder="password"
+                required>
             </div>
 
             <!-- 닉네임 -->
             <div class="input-group mb-3">
-              <input id="signup-nickname" type="text" class="form-control" placeholder="nickname" required>
+              <input id="signup-nickname" type="text" name="nickname" class="form-control" placeholder="nickname"
+                required>
             </div>
 
             <!-- 국가 -->
             <!-- 1, 2, 3으로 뜬다 -> enum으로 받기?? -->
             <div class="input-group mb-3">
               <label class="input-group-text">Country</label>
-              <select class="form-select" id="signup-country" required>
+              <select class="form-select" id="signup-country" name="country" required>
                 <option selected>국가 선택</option>
                 <option value="1">South Korea</option>
                 <option value="2">Japan</option>
@@ -123,7 +126,7 @@
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
               Close
             </button>
-            <button id="signup-button" type="button" class="btn btn-primary">회원 가입</button>
+            <button id="signup-button" type="submit" class="btn btn-primary">회원 가입</button>
           </div>
         </form>
       </div>

@@ -1,10 +1,11 @@
 package com.example.muroba.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.*;
 
-@Getter
+@Data
+@Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class MemberProfileDto {
     private Long id;
     private String email;

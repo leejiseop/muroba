@@ -67,68 +67,68 @@
   <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form id="signup-form" action="/sign-up" method="post">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">회원가입</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
+        <!-- <form id="signup-form"> -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">회원가입</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
 
-          <div class="modal-body">
+        <div class="modal-body">
 
-            <!-- 이메일 -->
-            <div class="input-group mb-3">
-              <input id="signup-email" type="text" name="email" class="form-control" placeholder="email" required />
-              <button class="btn btn-outline-secondary" type="button" id="get-auth">
-                인증번호 받기
-              </button>
-            </div>
-
-            <!-- 인증번호 -->
-            <!-- 따로 ajax로 인증로직 만들기 -->
-            <div class="input-group mb-3">
-              <input id="email-auth" type="text" class="form-control" placeholder="인증번호" disabled />
-              <button class="btn btn-outline-secondary" type="button" id="auth-submit">
-                이메일 인증하기
-              </button>
-            </div>
-
-            <!-- 비밀번호 -->
-            <div class="input-group mb-3">
-              <input id="signup-password" type="text" name="password" class="form-control" placeholder="password"
-                required>
-            </div>
-
-            <!-- 닉네임 -->
-            <div class="input-group mb-3">
-              <input id="signup-nickname" type="text" name="nickname" class="form-control" placeholder="nickname"
-                required>
-            </div>
-
-            <!-- 국가 -->
-            <!-- 1, 2, 3으로 뜬다 -> enum으로 받기?? -->
-            <div class="input-group mb-3">
-              <label class="input-group-text">Country</label>
-              <select class="form-select" id="signup-country" name="country" required>
-                <option selected>국가 선택</option>
-                <option value="1">South Korea</option>
-                <option value="2">Japan</option>
-                <option value="3">United States</option>
-                <option value="3">China</option>
-                <option value="3">Canada</option>
-                <option value="3">Australia</option>
-                <option value="3">Vietnam</option>
-                <option value="3">France</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-              Close
+          <!-- 이메일 -->
+          <div class="input-group mb-3">
+            <input id="signup-email" type="text" name="email" class="form-control" placeholder="email" required />
+            <button class="btn btn-outline-secondary" type="button" id="get-auth">
+              인증번호 받기
             </button>
-            <button id="signup-button" type="submit" class="btn btn-primary">회원 가입</button>
           </div>
-        </form>
+
+          <!-- 인증번호 -->
+          <!-- 따로 ajax로 인증로직 만들기 -->
+          <div class="input-group mb-3">
+            <input id="email-auth" type="text" class="form-control" placeholder="인증번호" disabled />
+            <button class="btn btn-outline-secondary" type="button" id="auth-submit">
+              이메일 인증하기
+            </button>
+          </div>
+
+          <!-- 비밀번호 -->
+          <div class="input-group mb-3">
+            <input id="signup-password" type="password" name="password" class="form-control" placeholder="password"
+              required>
+          </div>
+
+          <!-- 닉네임 -->
+          <div class="input-group mb-3">
+            <input id="signup-nickname" type="text" name="nickname" class="form-control" placeholder="nickname"
+              required>
+          </div>
+
+          <!-- 국가 -->
+          <!-- 1, 2, 3으로 뜬다 -> enum으로 받기?? -->
+          <div class="input-group mb-3">
+            <label class="input-group-text">Country</label>
+            <select class="form-select" id="signup-country" name="country" required>
+              <option selected>국가 선택</option>
+              <option value="1">South Korea</option>
+              <option value="2">Japan</option>
+              <option value="3">United States</option>
+              <option value="3">China</option>
+              <option value="3">Canada</option>
+              <option value="3">Australia</option>
+              <option value="3">Vietnam</option>
+              <option value="3">France</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button id="signup-button" type="button" class="btn btn-primary">회원 가입</button>
+        </div>
+        <!-- </form> -->
       </div>
     </div>
   </div>

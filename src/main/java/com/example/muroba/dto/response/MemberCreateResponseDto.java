@@ -1,10 +1,11 @@
 package com.example.muroba.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.*;
 
-@Getter
+@Data
+@Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class MemberCreateResponseDto {
     private Long id;
     private String email;

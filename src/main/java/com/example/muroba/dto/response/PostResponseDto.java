@@ -2,11 +2,12 @@ package com.example.muroba.dto.response;
 
 import java.time.LocalDateTime;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.*;
 
-@Getter
+@Data
+@Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class PostResponseDto {
     private Long id;
     private Long memberId;

@@ -1,11 +1,14 @@
 package com.example.muroba.dto.request;
 
-import lombok.Getter;
+import lombok.*;
 
-@Getter
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class PostRequestDto {
     private Long memberId;
     private String fromLang;
     private String toLang;
     private String content;
-} 
+}

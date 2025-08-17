@@ -17,7 +17,7 @@ import com.example.muroba.service.LikeService;
 
 import lombok.RequiredArgsConstructor;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class AnswerController {
     private final CommentService answerService;

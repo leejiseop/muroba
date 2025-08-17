@@ -20,7 +20,7 @@ import com.example.muroba.service.PostService;
 
 import lombok.RequiredArgsConstructor;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class PostController {
     private final PostService postService;

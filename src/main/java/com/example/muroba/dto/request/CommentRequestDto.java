@@ -1,8 +1,11 @@
 package com.example.muroba.dto.request;
 
-import lombok.Getter;
+import lombok.*;
 
-@Getter
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CommentRequestDto {
     private Long memberId;
     private Long postId;

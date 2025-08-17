@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.nio.charset.StandardCharsets;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class MemberController {
     private final MemberService memberService;
@@ -34,23 +34,30 @@ public class MemberController {
 
     // 회원 등록 - PRG 패턴 적용해보자
     @PostMapping("/sign-up")
-    public String createMember(MemberCreateRequestDto requestDto) {
-        System.out.println(requestDto.getNickname());
-        System.out.println(requestDto.getEmail());
-        System.out.println(requestDto.getCountry());
-        System.out.println(requestDto.getPassword());
-//        MemberCreateResponseDto responseDto = memberService.createMember(requestDto);
-//        return ResponseEntity
-//                .status(HttpStatus.CREATED)
-//                .body(responseDto);
-        return "redirect:/board/write";
+    public void createMember(@RequestBody MemberCreateRequestDto requestDto) {
+
+        // service 단
+        // 이메일 유저명 등 중복체크
+        // dto를 이용해서 user 객체를 만든다
+        // 비밀번호는 passwordEncoder.encode(requestDto.getPassword())
+        // user 객체를 save하고 종료
+        MemberCreateResponseDto responseDto = memberService.createMember(requestDto);
+
+//        return "redirect:/board/write";
     }
 
     // 회원 로그인
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDto> signIn(@RequestBody LoginRequestDto requestDto) {
 
+        // 로그인 성공 시 토큰 발급
         LoginResponseDto responseDto = memberService.signIn(requestDto);
+
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.set(JwtUtil.AUTHORIZATION_HEADER, tokenResponseDto.getAccessToken());
+//        headers.set(JwtUtil.REFRESH_TOKEN_HEADER, tokenResponseDto.getRefreshToken());
+//        headers.setContentType(new MediaType("application", "json", StandardCharsets.UTF_8));
+
 
         return ResponseEntity.ok(responseDto);
     }

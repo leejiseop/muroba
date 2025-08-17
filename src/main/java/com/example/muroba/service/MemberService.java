@@ -11,6 +11,7 @@ import com.example.muroba.repository.MemberRepository;
 import com.example.muroba.dto.request.MemberCreateRequestDto;
 import com.example.muroba.dto.response.MemberCreateResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,13 +21,14 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final LikeMemberRepository likeMemberRepository;
     private final MemberPointRepository memberPointRepository;
+//    private final PasswordEncoder passwordEncoder;
 
     // 멤버 생성
     @Transactional
     public MemberCreateResponseDto createMember(MemberCreateRequestDto dto) {
         Member member = Member.builder()
                 .email(dto.getEmail())
-                .password(dto.getPassword())
+//                .password(passwordEncoder.encode(dto.getPassword()))
                 .nickname(dto.getNickname())
                 .country(dto.getCountry())
                 .isBlocked(false)

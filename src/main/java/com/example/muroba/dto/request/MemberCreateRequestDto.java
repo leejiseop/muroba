@@ -1,9 +1,11 @@
 package com.example.muroba.dto.request;
 
-import lombok.Data;
-import lombok.Getter;
+import lombok.*;
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class MemberCreateRequestDto {
     private String email;
     private String password;

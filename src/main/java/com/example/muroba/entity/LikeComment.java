@@ -22,10 +22,11 @@ public class LikeComment extends TimeStamped{
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "from_member_id", nullable = false)
+    private Member fromMember;
+
+    @ManyToOne
     @JoinColumn(name = "to_member_id", nullable = false)
     private Comment toAnswer;
 
-    @ManyToOne
-    @JoinColumn(name = "from_member_id", nullable = false)
-    private Member fromMember;
 }

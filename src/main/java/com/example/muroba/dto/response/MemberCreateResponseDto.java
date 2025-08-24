@@ -11,4 +11,4 @@ public class MemberCreateResponseDto {
     private String email;
     private String nickname;
     private String country;
-} 
+}

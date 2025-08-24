@@ -22,10 +22,11 @@ public class LikePost extends TimeStamped{
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "from_member_id", nullable = false)
+    private Member fromMember;
+
+    @ManyToOne
     @JoinColumn(name = "to_member_id", nullable = false)
     private Post toPost;
 
-    @ManyToOne
-    @JoinColumn(name = "from_member_id", nullable = false)
-    private Member fromMember;
 }

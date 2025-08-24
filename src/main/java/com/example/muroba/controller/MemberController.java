@@ -7,14 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.muroba.dto.MemberProfileDto;
 import com.example.muroba.dto.request.MemberCreateRequestDto;
@@ -32,7 +25,15 @@ public class MemberController {
     private final MemberService memberService;
     private final LikeService likeService;
 
-    // 회원 등록 - PRG 패턴 적용해보자
+    //
+    @GetMapping("/test")
+    @ResponseBody // 뷰 이름이 아니라 응답 텍스트로 보내기
+    public String testtest() {
+        return "ok";
+    }
+
+
+        // 회원 등록 - PRG 패턴 적용해보자
     @PostMapping("/sign-up")
     public void createMember(@RequestBody MemberCreateRequestDto requestDto) {
 

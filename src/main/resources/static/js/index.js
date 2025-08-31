@@ -14,7 +14,7 @@ document.getElementById("login_skip").addEventListener("click", function () {
   $.ajax(settings).done(function (response) {
     console.log(response)
     alert("okokok")
-    location.replace('./postList.html');
+    location.replace('./muroba.html');
   }).fail(function (response) {
     alert("not ok")
   })
@@ -59,3 +59,4 @@ function signup(email, password, nickname, country) {
     alert("not ok")
   })
 }
+alert("hi")

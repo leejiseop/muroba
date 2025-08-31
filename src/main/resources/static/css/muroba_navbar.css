@@ -1,0 +1,48 @@
+/* VARIABLES */
+/* BASE */
+
+.header a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* HEADER */
+.header {
+    z-index: 99;
+
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    margin: 0px auto;
+    width: 810px;
+    /* width: 100%; */
+    line-height: 65px;
+
+    color: #fff;
+    background-color: rgba(49, 68, 173, 0.8);
+}
+
+.header__logo {
+    font-weight: 700;
+    padding: 0 25px;
+    float: left;
+}
+
+/* MENU */
+.menu {
+    /* float: left; */
+    display: flex;
+    /* flex-wrap: wrap; */
+    flex-direction: row;
+
+}
+
+.menu a {
+    padding: 0 10px;
+}
+
+.menu a:hover {
+    color: #c5cae9;
+}

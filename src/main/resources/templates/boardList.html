@@ -1,30 +1,34 @@
 <!DOCTYPE html>
-<html lang="en", xmlns:th="http://www.thymeleaf.org">
+<html lang="en" , xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>게시글 리스트 페이지</title>
+  <meta charset="UTF-8">
+  <title>게시글 리스트 페이지</title>
 </head>
 <style>
-    .layout {
-      width: 500px;
-      margin: 0 auto;
-      margin-top: 40px;
+  .layout {
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 40px;
   }
 
   .layout input {
-      width: 100%;
-      box-sizing: border-box;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .layout textarea {
-      width: 100%;
-      margin-top: 10px;
-      min-height: 300px;
+    width: 100%;
+    margin-top: 10px;
+    min-height: 300px;
   }
 </style>
+
 <body>
 
   <div class="layout">
+    <a th:href="@{/post-test}">로그인 스킵 타임리프</a>
+
     <table>
       <thead>
         <tr>
@@ -44,7 +48,8 @@
     </table>
 
     <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
-      <a th:if="${page != nowPage}" th:href="@{/board/list(page = ${page - 1}, searchKeyword = ${param.searchKeyword})}" th:text="${page}"></a>
+      <a th:if="${page != nowPage}" th:href="@{/board/list(page = ${page - 1}, searchKeyword = ${param.searchKeyword})}"
+        th:text="${page}"></a>
       <strong th:if="${page == nowPage}" th:text="${page}" style="color : red"></strong>
     </th:block>
     <form th:action="@{/board/list}" method="get">
@@ -54,4 +59,5 @@
   </div>
 
 </body>
+
 </html>

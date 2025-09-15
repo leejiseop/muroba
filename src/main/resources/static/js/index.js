@@ -59,4 +59,3 @@ function signup(email, password, nickname, country) {
     alert("not ok")
   })
 }
-alert("hi")

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" , xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUROBA</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <!-- Font Awesome CDN (v6) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- css -->
+    <link rel="stylesheet" href="css/muroba.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="stylesheet" href="css/1_threads.css" />
+    <!-- live server -->
+    <link rel="stylesheet" href="../static/css/muroba.css" />
+    <link rel="stylesheet" href="../static/css/navbar.css" />
+    <link rel="stylesheet" href="../static/css/1_threads.css" />
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <!-- https://codepen.io/hanlinC/pen/pomyyo -->
+    <header class="header">
+
+        <a th:href="@{threads}" class="header__logo">MUROBA</a>
+
+        <nav class="menu">
+            <a th:href="@{/threads}" class="navbar-item" id="navbar-threads">Threads</a>
+            <a th:href="@{/messages}" class="navbar-item" id="navbar-messages">Messages</a>
+            <a th:href="@{/mypage}" class="navbar-item" id="navbar-mypage">MyPage</a>
+            <a th:href="@{/gallery}" class="navbar-item" id="navbar-gallery">Gallery</a>
+        </nav>
+
+    </header>
+
+    <div class="content-item active" id="content-threads">
+        <div class="content-padding">
+            <!-- Contenedor Principal -->
+            <!-- <h1>Threads <a href="#">Share your world, learn theirs</a></h1> -->
+            <span>무한 스크롤, 최근 글이 최상단</span>
+            <br>
+            <span>gpt 활용해서 더미게시글 만들기</span>
+            <br>
+            <span>글 밑에 댓글 댓수 있음 클릭하면 글 화면으로 이동하고 지금처럼 댓글 표시</span>
+            <br>
+            <span>홈, 마이페이지, 보낸 쪽지, 받은 쪽지</span>
+            <br>
+            <span>게시글 리스트 띄우기, 게시글 클릭하면 게시글 조회페이지로 이동, 조회페이지는 댓글 표시</span>
+
+
+
+            <div class="btn-group mb-3 mt-3" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                <label class="btn btn-outline-success" for="btnradio1">All</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio2">Korean</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio3">English</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio4">Japanese</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio5">Chinese</label>
+            </div>
+            <div class="input-group w-75">
+                <input type="text" class="form-control" placeholder="검색어를 입력하세요" aria-label="Recipient's username"
+                    aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+            </div>
+
+            <ul id="comments-list" class="comments-list">
+                <li>
+                    <div class="comment-main-level" id="post_1" onclick="clicktest(event)">
+                        <div class="comment-avatar"><img
+                                src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt="">
+                        </div>
+                        <div class="comment-box">
+                            <div class="comment-head">
+                                <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin
+                                        Ortiz</a>
+                                </h6>
+                                <span>hace 20 minutos</span>
+                                <i class="fa fa-reply"></i>
+                                <i class="fa fa-heart"></i>
+                            </div>
+                            <div class="comment-content">
+                                댓글1 - post.html은 지우고 클릭하면 글 펼쳐지는거로 하자 ajax로
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="comments-list reply-list">
+                        <li>
+                            <!-- 대댓글 1 -->
+                            <div class="comment-avatar"><img
+                                    src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg"
+                                    alt="">
+                            </div>
+                            <div class="comment-box">
+                                <div class="comment-head">
+                                    <h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
+                                    <span>hace 10 minutos</span>
+                                    <i class="fa fa-reply"></i>
+                                    <i class="fa fa-heart"></i>
+                                </div>
+                                <div class="comment-content">
+                                    댓글1 답글1 그리고 Threads Messages MyPage Settings는 thymeleaf로 각 페이지 만들자
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="comment-avatar"><img
+                                    src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg"
+                                    alt="">
+                            </div>
+                            <div class="comment-box">
+                                <div class="comment-head">
+                                    <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin
+                                            Ortiz</a></h6>
+                                    <span>hace 10 minutos</span>
+                                    <i class="fa fa-reply"></i>
+                                    <i class="fa fa-heart"></i>
+                                </div>
+                                <div class="comment-content">
+                                    댓글1 답글2 일단 펼치고 접는 기능부터 구현해볼까?
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="comment-main-level" id="post_2" onclick="clicktest(event)">
+                        <div class="comment-avatar"><img
+                                src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt="">
+                        </div>
+                        <div class="comment-box">
+                            <div class="comment-head">
+                                <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin
+                                        Ortiz</a>
+                                </h6>
+                                <span>hace 20 minutos</span>
+                                <i class="fa fa-reply"></i>
+                                <i class="fa fa-heart"></i>
+                            </div>
+                            <div class="comment-content">
+                                댓글1 - post.html은 지우고 클릭하면 글 펼쳐지는거로 하자 ajax로
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="comments-list reply-list">
+                        <li>
+                            <!-- 대댓글 1 -->
+                            <div class="comment-avatar"><img
+                                    src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg"
+                                    alt="">
+                            </div>
+                            <div class="comment-box">
+                                <div class="comment-head">
+                                    <h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
+                                    <span>hace 10 minutos</span>
+                                    <i class="fa fa-reply"></i>
+                                    <i class="fa fa-heart"></i>
+                                </div>
+                                <div class="comment-content">
+                                    댓글1 답글1 그리고 Threads Messages MyPage Settings는 thymeleaf로 각 페이지 만들자
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="comment-avatar"><img
+                                    src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg"
+                                    alt="">
+                            </div>
+                            <div class="comment-box">
+                                <div class="comment-head">
+                                    <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin
+                                            Ortiz</a></h6>
+                                    <span>hace 10 minutos</span>
+                                    <i class="fa fa-reply"></i>
+                                    <i class="fa fa-heart"></i>
+                                </div>
+                                <div class="comment-content">
+                                    댓글1 답글2 일단 펼치고 접는 기능부터 구현해볼까?
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+<script src="js/muroba.js"></script>
+<script src="js/navbar.js"></script>
+<script src="js/1_threads.js"></script>
+
+<!-- live server -->
+<script src="../static/js/muroba.js"></script>
+<script src="../static/js/navbar.js"></script>
+<script src="../static/js/1_threads.js"></script>
+
+</html>

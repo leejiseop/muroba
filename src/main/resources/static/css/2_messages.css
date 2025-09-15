@@ -44,6 +44,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
 }
 
 .container-messages .left .top:after {
@@ -153,7 +154,16 @@
     color: var(--grey);
 }
 
-.container-messages .left .people .person.active,
+.container-messages .left .people .person.active {
+    margin-top: -1px;
+    margin-left: -1px;
+    padding-top: 13px;
+    border: 0;
+    background-color: var(--blue);
+    width: calc(100% + 2px);
+    /* padding-left: calc(10% + 1px); */
+}
+
 .container-messages .left .people .person:hover {
     margin-top: -1px;
     margin-left: -1px;
@@ -162,6 +172,8 @@
     background-color: var(--blue);
     width: calc(100% + 2px);
     /* padding-left: calc(10% + 1px); */
+    transition: all 0.2s;
+    translate: 20px;
 }
 
 .container-messages .left .people .person.active span,
@@ -461,4 +473,8 @@
         margin-right: 0;
         opacity: 1;
     }
+}
+
+#navbar-messages {
+    background-color: rgba(49, 68, 173, 0.8);
 }

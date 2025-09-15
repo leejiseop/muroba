@@ -32,19 +32,9 @@ public class PostController {
         return postService.getPosts(pageable);
     }
 
-    // 선택한 게시글 조회
-    @GetMapping("/posts/{id}")
-    public String getPost(@PathVariable Long id, Model model) {
-        PostResponseDto post = postService.getPostById(id);
-        model.addAttribute("test", post);
-        return "post";
-    }
-
-
     // 게시글 생성
     @PostMapping("/create")
     public PostResponseDto createPost(@RequestBody PostRequestDto dto) {
-
 
         return postService.createPost(dto);
     }

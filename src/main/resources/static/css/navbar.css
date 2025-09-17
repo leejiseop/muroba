@@ -1,13 +1,13 @@
 /* VARIABLES */
 /* BASE */
 
-.header a {
+header a {
     text-decoration: none;
     color: #fff;
 }
 
 /* HEADER */
-.header {
+header {
     z-index: 99;
 
     position: sticky;
@@ -28,6 +28,10 @@
     font-weight: 700;
     padding: 0 25px;
     float: left;
+}
+
+.header__logo:hover {
+    color: #c5cae9
 }
 
 /* MENU */

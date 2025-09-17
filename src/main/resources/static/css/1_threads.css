@@ -25,10 +25,9 @@
     position: absolute;
     background: #cccccc;
     bottom: 0;
-    left: 27px;
-    width: 7px;
-    height: 7px;
-    border: 3px solid #dee1e3;
+    left: 28px;
+    width: 10px;
+    height: 10px;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
@@ -277,4 +276,10 @@
 
 #navbar-threads {
     background-color: rgba(49, 68, 173, 0.8);
+}
+
+.header-button-wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

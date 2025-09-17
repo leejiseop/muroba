@@ -1,0 +1,120 @@
+#navbar-mypage {
+    background-color: rgba(49, 68, 173, 0.8);
+}
+
+.mypage_container {
+    background: #fff;
+    padding: 40px 50px;
+}
+
+.profile_header {
+    margin-bottom: 20px;
+}
+
+.profile_header .full-name {
+    font-size: 40px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.profile_header .first-name {
+    font-weight: 700;
+}
+
+.profile_header .last-name {
+    font-weight: 300;
+}
+
+.details {
+    line-height: 20px;
+}
+
+.details .section {
+    margin-bottom: 40px;
+}
+
+.details .section__title {
+    letter-spacing: 2px;
+    color: #54AFE4;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.details .section__list-item {
+    margin-bottom: 40px;
+}
+
+.details .section__list-item:last-of-type {
+    margin-bottom: 0;
+}
+
+.details .left,
+.details .right {
+    vertical-align: top;
+    display: inline-block;
+}
+
+.details .left {
+    width: 45%;
+}
+
+.details .right {
+    width: 50%;
+}
+
+.details .name {
+    font-weight: bold;
+}
+
+.details a {
+    text-decoration: none;
+    color: #000;
+    font-style: italic;
+}
+
+.details a:hover {
+    text-decoration: underline;
+    color: #000;
+}
+
+.profile_image {
+    margin: 0 auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 40%;
+}
+
+.lr_container {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.header_left {
+    /* margin: auto; */
+}
+
+.header_right {
+    margin: auto 0;
+}
+
+.button_wrap {
+    text-align: center;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 7%;
+}
+
+.profile-desc {
+    width: 90%;
+    background-color: greenyellow;
+}
+
+.desc {
+    /* background-color: green; */
+}

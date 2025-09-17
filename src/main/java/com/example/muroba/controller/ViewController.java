@@ -40,6 +40,12 @@ public class ViewController {
         return "3_mypage";
     }
 
+    @GetMapping("/mypage_modify")
+    public String mypage_modify(Model model) {
+
+        return "3_mypage_modify";
+    }
+
     @GetMapping("/gallery")
     public String gallery(Model model) {
 

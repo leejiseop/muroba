@@ -70,23 +70,23 @@
                         <div class="section__list-item">
                             <div class="left">
                                 <div class="name">아이디</div>
-                                <div class="desc">awleifuh24r92835u928</div>
+                                <div class="addr">awleifuh24r92835u928</div>
                             </div>
                         </div>
                         <div class="section__list-item">
                             <div class="left">
                                 <div class="name">비밀번호</div>
-                                <div class="desc">막혀있는input</div>
+                                <div class="addr">*********</div>
                             </div>
                             <div class="right">
                                 <div class="name">비밀번호 확인</div>
-                                <div class="desc">막혀있는input</div>
+                                <div class="desc">*********</div>
                             </div>
                         </div>
                         <div class="section__list-item">
                             <div class="left">
                                 <div class="name">거주 국가</div>
-                                <div class="desc">Korea</div>
+                                <div class="addr">Korea</div>
                             </div>
                             <div class="right">
                                 <div class="name">관심 국가</div>
@@ -98,8 +98,10 @@
                 </div>
             </div>
             <div class="button_wrap">
-                <button type="button" class="btn btn-primary btn-lg"
-                    th:onclick="|location.href='@{/mypage_modify}'|">Modify</button>
+                <button type="button" class="btn btn-success btn-lg"
+                    th:onclick="|location.href='@{/mypage_modify}'|">Commit</button>
+                <button type="button" class="btn btn-secondary btn-lg"
+                    th:onclick="|location.href='@{/mypage}'|">Cancel</button>
             </div>
         </div>
     </div>

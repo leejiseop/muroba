@@ -27,6 +27,24 @@ h1 a {
     font-weight: 700;
 }
 
+pre {
+    margin: 0;
+    font-family: var(--bs-body-font-family) !important;
+    font-size: var(--bs-body-font-size) !important;
+    font-weight: var(--bs-body-font-weight) !important;
+    line-height: var(--bs-body-line-height) !important;
+    color: var(--bs-body-color) !important;
+}
+
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+    /* overflow: hidden; */
+    /* 스크롤바 숨김 */
+    /* resize: none; */
+    /* 사용자가 수동으로 크기 조절하지 못하게 함 */
+}
+
 html {
     height: 100%;
 }

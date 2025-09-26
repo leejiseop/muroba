@@ -1,6 +1,10 @@
 package com.example.muroba.entity;
 
+import com.example.muroba.dto.request.PostRequestDto;
+import com.example.muroba.dto.response.PostResponseDto;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,8 +28,12 @@ public class Post extends TimeStamped {
     private String content;
 
     @Column(nullable = false)
-    private String fromLang;
+    private String interested;
 
     @Column(nullable = false)
-    private String toLang;
+    private Long comments_count;
+
+    public void changeContent(String changed_content) {
+        this.content = changed_content;
+    }
 }

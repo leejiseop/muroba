@@ -29,6 +29,7 @@ public class MemberService {
         Member member = Member.builder()
                 .email(dto.getEmail())
 //                .password(passwordEncoder.encode(dto.getPassword()))
+                .password(dto.getPassword())
                 .nickname(dto.getNickname())
                 .country(dto.getCountry())
                 .isBlocked(false)
@@ -65,34 +66,6 @@ public class MemberService {
                 .email(member.getEmail())
                 .memberId(member.getId())
                 .build();
-    }
-
-    // 멤버 프로필 조회
-    @Transactional(readOnly = true)
-    public MemberProfileDto getProfile(Long memberId) {
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new IllegalArgumentException("회원이 존재하지 않습니다."));
-        int likeCount = likeMemberRepository.countByToMember(member);
-        MemberPoint point = memberPointRepository.findByMember(member).orElse(null);
-        int level = point != null ? point.getLevel() : 0;
-        int pt = point != null ? point.getPoint() : 0;
-        return new MemberProfileDto(
-                member.getId(),
-                member.getEmail(),
-                member.getNickname(),
-                member.getCountry(),
-                likeCount,
-                level,
-                pt
-        );
-    }
-
-    // 멤버 탈퇴
-    @Transactional
-    public void deleteMember(Long memberId) {
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new IllegalArgumentException("회원이 존재하지 않습니다."));
-        memberRepository.delete(member);
     }
 
     // 전체 멤버 조회

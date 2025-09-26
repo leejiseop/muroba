@@ -63,21 +63,4 @@ public class MemberController {
         return ResponseEntity.ok(responseDto);
     }
 
-    // 회원 조회
-    @GetMapping("/member/{memberId}")
-    public MemberProfileDto getProfile(@PathVariable Long memberId) {
-        return memberService.getProfile(memberId);
-    }
-
-    // 회원 좋아요 토글
-    @PostMapping("/{toMemberId}/like")
-    public boolean toggleLike(@PathVariable Long toMemberId, @RequestParam Long fromMemberId) {
-        return likeService.toggleLikeMember(toMemberId, fromMemberId);
-    }
-
-    // 회원 탈퇴
-    @DeleteMapping("/member/{memberId}")
-    public void deleteMember(@PathVariable Long memberId) {
-        memberService.deleteMember(memberId);
-    }
-} 
+}

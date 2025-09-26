@@ -1,14 +1,25 @@
 package com.example.muroba.dto.request;
 
-import lombok.*;
+import com.example.muroba.entity.Member;
+import com.example.muroba.entity.Post;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentRequestDto {
-    private Long memberId;
+    @NotBlank
     private Long postId;
+
+    @NotBlank
+    private Long memberId;
+
+    @NotBlank
     private String comment;
-    private Long upperCommentId; // 대댓글일 경우 상위 댓글 ID, 아니면 null
-} 
+}

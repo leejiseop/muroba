@@ -47,8 +47,9 @@ public class PostController {
     }
 
     @PostMapping("/posts/create")
-    public ResponseEntity<Post> createPost(@RequestBody PostRequestDto postRequestDto) {
-        return ResponseEntity.ok().body(postService.createPost(postRequestDto));
+    public ResponseEntity<PostResponseDto> createPost(@RequestBody PostRequestDto postRequestDto) {
+        Post post = postService.createPost(postRequestDto);
+        return ResponseEntity.ok().body(PostResponseDto.from(post));
     }
 
     @DeleteMapping("/posts/delete/{postId}")
@@ -58,8 +59,9 @@ public class PostController {
     }
 
     @PutMapping("/posts/modify/{postId}")
-    public ResponseEntity<Post> modifyPost(@PathVariable Long postId, @RequestBody PostModifyRequestDto postModifyRequestDto) {
-        return ResponseEntity.ok().body(postService.modifyPost(postId, postModifyRequestDto));
+    public ResponseEntity<PostResponseDto> modifyPost(@PathVariable Long postId, @RequestBody PostModifyRequestDto postModifyRequestDto) {
+        Post post = postService.modifyPost(postId, postModifyRequestDto);
+        return ResponseEntity.ok().body(PostResponseDto.from(post));
     }
 
 //

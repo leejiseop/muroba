@@ -29,4 +29,16 @@ public class PostResponseDto {
         this.createdAt = post.getCreatedAt();
         this.modifiedAt = post.getModifiedAt();
     }
+
+    public static PostResponseDto from(Post post) {
+        return new PostResponseDto(
+                post.getId(),
+                post.getMember().getId(),
+                post.getContent(),
+                post.getInterested(),
+                post.getComments_count(),
+                post.getCreatedAt(),
+                post.getModifiedAt()
+        );
+    }
 }

@@ -25,20 +25,93 @@ loading_button.addEventListener('click', function () {
     }, 500);
 })
 
-function clicktest(event) {
+function open_comment(event) {
 
+
+
+    // 클릭한곳이 게시글 내용이 아니면 return
     if (event.target.classList.contains('comment-content') == false) { return }
 
-    let current = event.currentTarget.parentNode.nextElementSibling
+    let reply_list = event.currentTarget.parentNode.nextElementSibling
 
-    if (current.classList.contains('reply-list-active')) {
-        current.classList.remove('reply-list-active')
+    // 원래 열려있었으면 - 닫는다
+    if (reply_list.classList.contains('reply-list-active')) {
+        reply_list.classList.remove('reply-list-active')
+        reply_list.innerHTML = ''
+        // 원래 닫혀있었으면 - 연다
     } else {
+
+        // 열려있던게 다른곳에 존재하면 - 닫는다
         let reply_list_active = document.querySelector('.reply-list-active');
         if (reply_list_active) {
             reply_list_active.classList.remove('reply-list-active');
+            reply_list_active.innerHTML = ''
         }
-        current.classList.add('reply-list-active')
+
+        let postId = event.currentTarget.dataset.postId
+        let memberId = event.currentTarget.dataset.memberId
+
+        let temp_html =
+            `
+            <li>
+                <div class="comment-avatar">
+                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                        alt="">
+                </div>
+                <div class="comment-box">
+                    <div class="comment-head">
+                        <h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
+                    </div>
+                    <div style="display: flex; flex-direction: row;">
+                        <textarea class="form-control border-3" data-post-id="${postId}" id="comment_textarea" rows="3"
+                            placeholder="댓글을 입력해주세요!"></textarea>
+                        <button class="btn btn-outline-primary" type="button" id="button-addon3"
+                            style="width: 80px;" onclick="write_comment(event)">등록</button>
+                    </div>
+                </div>
+            </li>
+            `
+        $(`#${reply_list.id}`).append(temp_html)
+
+        $.ajax({
+            type: "GET",
+            url: `api/comments/${postId}`,
+            success: function (comment_dto_list) {
+
+                comment_dto_list.forEach(comment_dto => {
+                    let commentId = comment_dto.id
+                    let postId = comment_dto.postId
+                    let memberId = comment_dto.memberId
+                    let comment = comment_dto.comment
+
+                    let temp_comment_html =
+                        `
+                        <li>
+                            <div class="comment-avatar">
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                                    alt="">
+                            </div>
+                            <div class="comment-box">
+                                <div class="comment-head">
+                                    <h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
+                                    <span>hace 10 minutos</span>
+                                    <i class="fa-solid fa-trash" data-comment-id="${commentId}"
+                                        onclick="delete_comment(event)"></i>
+                                </div>
+                                <pre
+                                    class="comment-content">${comment}</pre>
+                            </div>
+                        </li>
+                        `
+                    $(`#${reply_list.id}`).append(temp_comment_html)
+
+                });
+            }
+        }).fail(function (e) {
+            console.log('open_comment fail')
+        });
+
+        reply_list.classList.add('reply-list-active')
     }
 
 }
@@ -67,7 +140,7 @@ function showSlicedPosts(size, page) {
             for (let i = 0; i < slice_size; i++) {
                 let post = post_list[i]
 
-                let id = post['id']
+                let postId = post['id']
                 let memberId = post['memberId']
                 let content = post['content']
                 let commentsCount = post['commentsCount']
@@ -82,30 +155,24 @@ function showSlicedPosts(size, page) {
                             <div class="comment-avatar" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="open_profile(event)">
                                 <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="">
                             </div>
-                            <div class="comment-box" onclick="clicktest(event)">
+                            <div class="comment-box" data-post-id="${postId}" data-member-id="${memberId}" onclick="open_comment(event)">
                                 <div class="comment-head">
                                     <h6 class="comment-name by-author">
                                         <a href="#">${memberId}</a>
                                     </h6>
-                                    <span>post_id : ${id}</span>
+                                    <span>post_id : ${postId}</span>
                                     <span>${createdAt}</span>
                                     <span>${modifiedAt}</span>
                                     <span>${interested}</span>
                                     <span>${commentsCount}</span>
-                                    <i class="fa-solid fa-trash" data-post-id="${id}" onclick="delete_post(event)"></i>
-                                    <i class="fa-solid fa-pen" data-post-id="${id}" onclick="open_modify(event)" data-bs-toggle="modal" data-bs-target="#exampleModal2"></i>
-                                    <i class="fa fa-heart" data-post-id="${id}" onclick="like_post(event)"></i>
-                                    <i class="fa fa-reply" data-post-id="${id}" onclick="write_comment(event)"></i>
+                                    <i class="fa-solid fa-trash" data-post-id="${postId}" onclick="delete_post(event)"></i>
+                                    <i class="fa-solid fa-pen" data-post-id="${postId}" onclick="open_modify(event)" data-bs-toggle="modal" data-bs-target="#exampleModal2"></i>
+                                    <i class="fa fa-heart" data-post-id="${postId}" onclick="like_post(event)"></i>
                                 </div>
-                                <pre class="comment-content" id="post_${id}">${content}</pre>
+                                <pre class="comment-content" id="post_${postId}">${content}</pre>
                             </div>
                         </div>
-                        <ul class="comments-list reply-list" id="post_${id}_comment_list">
-                            <div class="input-group mb-3">
-                                <textarea class="form-control" id="textarea" placeholder="댓글을 입력해주세요!"></textarea>
-                                <button class="btn btn-outline-primary" type="button" id="button-addon3"
-                                    onclick="write_comment(event)">댓글달기</button>
-                            </div>
+                        <ul class="comments-list reply-list" id="post_${postId}_comment_list">
                         </ul>
                     </li>
                     `
@@ -206,26 +273,62 @@ function delete_post(event) {
     });
 }
 
-function like_post(event) {
-    alert('like_post')
-}
-
 
 function write_comment(event) {
+    let textarea = document.querySelector('#comment_textarea')
+    let postId = textarea.dataset.postId
+    let newText = textarea.value
+
+    let originalText = document.querySelector(`#post_${postId}`)
+
+    let commentData = {
+        "postId": `${postId}`,
+        "memberId": "1", // 하드 코딩
+        "comment": newText,
+    }
+
     alert('write_comment')
-}
 
-
-function like_comment() {
-    alert('like_comment')
+    $.ajax({
+        type: "post",
+        url: `/api/comments/${postId}/create`,
+        data: JSON.stringify(commentData),
+        contentType: "application/json",
+        success: function (response) {
+            alert('댓글작성 ok')
+            location.reload();
+        },
+        error: function (error) { // 실패 시 실행
+            alert("에러 발생: " + error);
+        }
+    })
 }
 
 function delete_comment() {
-    alert('delete_comment')
+    let commentId = event.currentTarget.dataset.commentId
+
+    $.ajax({
+        type: "delete",
+        url: `/api/comments/delete/${commentId}`,
+        success: function (response) {
+            alert('delete ok')
+            location.reload();
+        }
+    }).fail(function (e) {
+        console.log('delete fail')
+    });
 }
 
 function open_profile(event) {
     // alert('open_profile')
+}
+
+function like_post(event) {
+    alert('like_post')
+}
+
+function like_comment() {
+    alert('like_comment')
 }
 
 function totop() {

@@ -1,13 +1,16 @@
 package com.example.muroba.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MemberCreateRequestDto {
+public class MemberRequestDto {
     @NotBlank
     private String email;
 
@@ -19,4 +22,5 @@ public class MemberCreateRequestDto {
 
     @NotBlank
     private String country;
+
 }

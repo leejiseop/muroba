@@ -14,8 +14,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentRequestDto {
-    @NotBlank
-    private Long postId;
+//    @PathVariable 사용함
+//    @NotBlank
+//    private Long postId;
 
     @NotBlank
     private Long memberId;

@@ -22,6 +22,7 @@ import com.example.muroba.service.PostService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -33,17 +34,21 @@ public class PostController {
 
     @GetMapping("/posts")
     public ResponseEntity<List<PostResponseDto>> getAllPosts() {
-        return ResponseEntity.ok().body(postService.getAllPosts());
+        return ResponseEntity.ok().body(postService.getAllPosts().stream()
+                .map(PostResponseDto::new)
+                .collect(Collectors.toList()));
     }
 
     @GetMapping("/paging-posts")
     public ResponseEntity<Page<PostResponseDto>> getAllPagingPosts(@PageableDefault(size = 10, page = 0) Pageable pageable) {
-        return ResponseEntity.ok().body(postService.getAllPagingPosts(pageable));
+        return ResponseEntity.ok().body(postService.getAllPagingPosts(pageable)
+                .map(PostResponseDto::new));
     }
 
     @GetMapping("/slicing-posts")
     public ResponseEntity<Slice<PostResponseDto>> getAllSlicingPosts(@PageableDefault(size = 10, page = 0) Pageable pageable) {
-        return ResponseEntity.ok().body(postService.getAllSlicingPosts(pageable));
+        return ResponseEntity.ok().body(postService.getAllSlicingPosts(pageable)
+                .map(PostResponseDto::new));
     }
 
     @PostMapping("/posts/create")

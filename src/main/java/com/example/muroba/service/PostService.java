@@ -29,24 +29,19 @@ public class PostService {
     private final LikePostRepository likePostRepository;
 
     @Transactional(readOnly = true)
-    public List<PostResponseDto> getAllPosts() {
-        List<Post> posts = postRepository.findAll();
-        return posts.stream()
-                .map(PostResponseDto::new)
-                .collect(Collectors.toList());
+    public List<Post> getAllPosts() {
+        return postRepository.findAll();
     }
 
     @Transactional(readOnly = true)
-    public Page<PostResponseDto> getAllPagingPosts(Pageable pageable) {
-        return postRepository.findAll(pageable)
-                .map(PostResponseDto::new);
+    public Page<Post> getAllPagingPosts(Pageable pageable) {
+        return postRepository.findAll(pageable);
     }
 
     @Transactional(readOnly = true)
-    public Slice<PostResponseDto> getAllSlicingPosts(Pageable pageable) {
+    public Slice<Post> getAllSlicingPosts(Pageable pageable) {
 //        Slice<Post> postList = postRepository.findAll(pageable);
-        return postRepository.findAllByOrderByIdDesc(pageable)
-                .map(PostResponseDto::new);
+        return postRepository.findAllByOrderByIdDesc(pageable);
     }
 
     @Transactional

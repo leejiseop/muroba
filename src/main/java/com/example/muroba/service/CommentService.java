@@ -28,9 +28,9 @@ public class CommentService {
     public Comment createComment(Long postId, CommentRequestDto commentRequestDto) {
         Comment comment = Comment.builder()
                 .post(postRepository.findById(postId)
-                        .orElseThrow(() -> new EntityNotFoundException("게시글이 존재하지 않습니다.")))
+                        .orElseThrow( () -> new EntityNotFoundException("게시글이 존재하지 않습니다.")))
                 .member(memberRepository.findById(commentRequestDto.getMemberId())
-                        .orElseThrow(() -> new EntityNotFoundException("사용자가 존재하지 않습니다.")))
+                        .orElseThrow( () -> new EntityNotFoundException("사용자가 존재하지 않습니다.")))
                 .comment(commentRequestDto.getComment())
                 .build();
 
@@ -38,11 +38,8 @@ public class CommentService {
     }
 
     @Transactional(readOnly = true)
-    public List<CommentResponseDto> getAllComments(Long postId) {
-        List<Comment> comments = commentRepository.findAllByPostIdOrderByIdDesc(postId);
-        return comments.stream()
-                .map(CommentResponseDto::new)
-                .collect(Collectors.toList());
+    public List<Comment> getAllComments(Long postId) {
+        return commentRepository.findAllByPostIdOrderByIdDesc(postId);
     }
 
     @Transactional

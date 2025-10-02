@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -31,7 +32,9 @@ public class CommentController {
 
     @GetMapping("/comments/{postId}")
     public ResponseEntity<List<CommentResponseDto>> getAllComments(@PathVariable Long postId) {
-        return ResponseEntity.ok().body(commentService.getAllComments(postId));
+        return ResponseEntity.ok().body(commentService.getAllComments(postId).stream()
+                .map(CommentResponseDto::new)
+                .collect(Collectors.toList()));
     }
 
     @DeleteMapping("/comments/delete/{commentId}")

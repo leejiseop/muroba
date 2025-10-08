@@ -78,16 +78,17 @@
           <!-- 이메일 -->
           <div class="input-group mb-3">
             <input id="signup-email" type="text" name="email" class="form-control" placeholder="email" required />
-            <button class="btn btn-outline-secondary" type="button" id="get-auth">
+            <button class="btn btn-outline-secondary" type="button" id="get-auth"
+              onclick="checkEmailAndSendAuth(event)">
               인증번호 받기
             </button>
           </div>
 
           <!-- 인증번호 -->
-          <!-- 따로 ajax로 인증로직 만들기 -->
           <div class="input-group mb-3">
             <input id="email-auth" type="email" name="auth" class="form-control" placeholder="인증번호" disabled />
-            <button class="btn btn-outline-secondary" type="button" id="auth-submit">
+            <button class="btn btn-outline-secondary" type="button" id="auth-submit"
+              onclick="checkEmailAndSendAuth(event)">
               이메일 인증하기
             </button>
           </div>

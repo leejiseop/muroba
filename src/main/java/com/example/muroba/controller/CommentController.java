@@ -27,6 +27,10 @@ public class CommentController {
     @PostMapping("/comments/{postId}/create")
     public ResponseEntity<CommentResponseDto> createComment(@PathVariable Long postId, @RequestBody CommentRequestDto commentRequestDto) {
         Comment comment = commentService.createComment(postId, commentRequestDto);
+        // 게시글 좋아요 개수 +1
+        // Post 조회해서 가져오고 comment_count +1 하고 save? dirty checking?
+        Post post = postService.getPostById(postId);
+
         return ResponseEntity.ok().body(CommentResponseDto.from(comment));
     }
 
@@ -40,6 +44,7 @@ public class CommentController {
     @DeleteMapping("/comments/delete/{commentId}")
     public ResponseEntity<String> deletePost(@PathVariable Long commentId) {
         commentService.deleteComment(commentId);
+        // 게시글 좋아요 개수 -1
         return ResponseEntity.ok().body("댓글이 삭제되었습니다.");
     }
 

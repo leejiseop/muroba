@@ -1,5 +1,6 @@
 package com.example.muroba.controller;
 
+import com.example.muroba.dto.request.EmailRequestDto;
 import com.example.muroba.dto.request.MemberRequestDto;
 import com.example.muroba.dto.response.MemberResponseDto;
 import com.example.muroba.dto.response.PostResponseDto;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -45,4 +47,14 @@ public class MemberController {
         return ResponseEntity.ok().body(MemberResponseDto.from(newMember));
     }
 
+    @GetMapping("/members/email")
+    public ResponseEntity<Map<String, Object>> isEmailDuplicate(@RequestParam String email) {
+
+        boolean available = memberService.isEmailDuplicate(email);
+        return ResponseEntity.ok().body(Map.of(
+                "email", email,
+                "available", available
+        ));
+
+    }
 }

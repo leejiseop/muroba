@@ -29,6 +29,13 @@ public class PostService {
     private final LikePostRepository likePostRepository;
 
     @Transactional(readOnly = true)
+    public Post getPostById(Long postId) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow( () -> new EntityNotFoundException("게시글이 존재하지 않습니다."));
+        return post;
+    }
+
+    @Transactional(readOnly = true)
     public List<Post> getAllPosts() {
         return postRepository.findAll();
     }
@@ -73,4 +80,5 @@ public class PostService {
 
         return post;
     }
+
 }

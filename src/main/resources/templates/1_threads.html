@@ -80,7 +80,7 @@
     <!-- https://codepen.io/hanlinC/pen/pomyyo -->
     <header>
 
-        <a th:href="@{threads}" class="header__logo">MUROBA</a>
+        <a th:href="@{/}" class="header__logo">MUROBA</a>
 
         <nav class="menu">
             <a th:href="@{/threads}" class="navbar-item" id="navbar-threads">Threads</a>
@@ -131,91 +131,6 @@
             <hr style="height: 2px;">
 
             <ul id="comments-list" class="comments-list">
-                <li>
-                    <div class="comment-main-level">
-                        <div class="comment-avatar" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                            onclick="open_profile(event)">
-                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-                                alt="">
-                        </div>
-                        <div class="comment-box" onclick="open_comment(event)">
-                            <div class="comment-head">
-                                <h6 class="comment-name by-author">
-                                    <span href="#">Agustin Ortiz</span>
-                                </h6>
-                                <span>hace 20 minutos</span>
-                                <i class="fa-solid fa-trash" data-post-id="post_2" onclick="delete_post(event)"></i>
-                                <i class="fa-solid fa-pen" data-post-id="${id}" onclick="open_modify(event)"
-                                    data-bs-toggle="modal" data-bs-target="#exampleModal2"></i>
-                                <i class="fa fa-heart" data-post-id="post_2" onclick="like_post(event)"></i>
-                                <i class="fa fa-reply" data-post-id="post_2" onclick="write_comment(event)"></i>
-                            </div>
-                            <pre class="comment-content">댓글1 - post.html은 지우고 클릭하면 글 펼쳐지는거로 하자 ajax로ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
-                                woefiajweiof
-                                wejofijㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ</pre>
-                        </div>
-                    </div>
-                    <ul class="comments-list reply-list mb-5">
-                        <!-- 댓글 textarea -->
-                        <li>
-                            <div class="comment-avatar">
-                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-                                    alt="">
-                            </div>
-                            <div class="comment-box">
-                                <div class="comment-head">
-                                    <h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
-                                </div>
-                                <div style="display: flex; flex-direction: row;">
-                                    <textarea class="form-control border-3" id="textarea" rows="3"
-                                        placeholder="댓글을 입력해주세요!"></textarea>
-                                    <button class="btn btn-outline-primary" type="button" id="button-addon3"
-                                        style="width: 80px;" onclick="write_comment(event)">등록</button>
-                                </div>
-                            </div>
-                        </li>
-                        <!-- 댓글 textarea -->
-                        <li>
-                            <div class="comment-avatar">
-                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-                                    alt="">
-                            </div>
-                            <div class="comment-box">
-                                <div class="comment-head">
-                                    <h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
-                                    <span>hace 10 minutos</span>
-                                    <i class="fa-solid fa-trash" data-post-id="post_2"
-                                        onclick="delete_comment(event)"></i>
-                                    <i class="fa-solid fa-pen" data-post-id="${id}" onclick="open_modify(event)"
-                                        data-bs-toggle="modal" data-bs-target="#exampleModal2"></i>
-                                    <i class="fa fa-heart" data-post-id="post_2" onclick="like_comment(event)"></i>
-                                </div>
-                                <pre
-                                    class="comment-content">댓글1 답글1 그리고 Threads Messages MyPage Settings는 thymeleaf로 각 페이지 만들자</pre>
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="comment-avatar">
-                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-                                    alt="">
-                            </div>
-                            <div class="comment-box">
-                                <div class="comment-head">
-                                    <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin
-                                            Ortiz</a></h6>
-                                    <span>hace 10 minutos</span>
-                                    <i class="fa-solid fa-trash" data-post-id="post_2"
-                                        onclick="delete_comment(event)"></i>
-                                    <i class="fa-solid fa-pen" data-post-id="${id}" onclick="open_modify(event)"
-                                        data-bs-toggle="modal" data-bs-target="#exampleModal2"></i>
-                                    <i class="fa fa-heart" data-post-id="post_2" onclick="like_comment(event)"></i>
-                                </div>
-                                <pre class="comment-content">댓글1 답글2 일단 펼치고 접는 기능부터 구현해볼까?</pre>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
             </ul>
             <div style="text-align: center; margin-top: 50px; margin-bottom: 150px;">
                 <button type="button" class="loading-button" id="loading-button">

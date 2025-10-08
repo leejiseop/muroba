@@ -63,7 +63,7 @@ function signup(event) {
     alert("회원가입이 완료되었습니다")
     location.reload(true);
   }).fail(function (response) {
-    alert("not ok")
+    alert("not ok signup")
   })
 }
 
@@ -75,3 +75,75 @@ function isEmail(email_address) {
     return true;
   }
 }
+
+
+
+
+function checkEmailAndSendAuth(event) {
+
+  let email = event.currentTarget.previousElementSibling.value
+
+  if (!isEmail(email)) {
+    alert('이메일 형식이 올바르지 않습니다.')
+    return
+  }
+
+  const settings = {
+    "url": `/api/members/email`,
+    "method": "get",
+    "timeout": 0,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "data": {
+      "email": email
+    }
+  };
+
+  $.ajax(settings).done(function (response) {
+    if (response.available) {
+      sendauth(email)
+      alert('인증번호가 전송되었습니다. 인증번호를 확인 후 입력해주세요.')
+      document.querySelector('#email-auth').disabled = false
+
+    } else {
+      alert('중복된 이메일입니다.')
+    }
+  }).fail(function (response) {
+    alert("not ok checkEmailAndSendAuth")
+  })
+
+}
+
+function sendauth(email) {
+  const settings = {
+    "url": `/api/email/sendauth`,
+    "method": "post",
+    "timeout": 0,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "data": JSON.stringify({
+      "email": email
+    })
+  };
+
+  $.ajax(settings).done(function (response) {
+    // 인증번호 전송 후 로직
+  }).fail(function (response) {
+    alert("not ok sendauth")
+  })
+}
+
+
+function checkauth(event) {
+
+}
+
+
+
+
+
+
+
+

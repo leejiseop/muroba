@@ -32,6 +32,12 @@ public class PostController {
     private final MemberService memberService;
     private final LikeService likeService;
 
+    @GetMapping("/posts/{postId}")
+    public ResponseEntity<PostResponseDto> getPostById(@PathVariable Long postId) {
+        Post post = postService.getPostById(postId);
+        return ResponseEntity.ok().body(PostResponseDto.from(post));
+    }
+
     @GetMapping("/posts")
     public ResponseEntity<List<PostResponseDto>> getAllPosts() {
         return ResponseEntity.ok().body(postService.getAllPosts().stream()
@@ -69,10 +75,18 @@ public class PostController {
         return ResponseEntity.ok().body(PostResponseDto.from(post));
     }
 
+//    @GetMapping("/posts/like")
+//    public ResponseEntity<List<PostResponseDto>> postLike() {
+//        return ResponseEntity.ok().body(postService.getAllPosts().stream()
+//                .map(PostResponseDto::new)
+//                .collect(Collectors.toList()));
+//    }
 //
-//    // 게시글 좋아요 토글
-//    @PostMapping("/{postId}/like")
-//    public boolean toggleLike(@PathVariable Long postId, @RequestParam Long memberId) {
-//        return likeService.toggleLikePost(postId, memberId);
+//    @GetMapping("/posts/unlike")
+//    public ResponseEntity<List<PostResponseDto>> postUnlike() {
+//        return ResponseEntity.ok().body(postService.getAllPosts().stream()
+//                .map(PostResponseDto::new)
+//                .collect(Collectors.toList()));
+//    }
 //    }
 }

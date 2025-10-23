@@ -1,5 +1,6 @@
 package com.example.muroba.controller;
 
+import com.example.muroba.config.RedisUtil;
 import com.example.muroba.dto.request.EmailRequestDto;
 import com.example.muroba.dto.request.MemberRequestDto;
 import com.example.muroba.dto.response.MemberResponseDto;
@@ -11,9 +12,11 @@ import com.example.muroba.service.LikeService;
 import com.example.muroba.service.MemberService;
 import com.example.muroba.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Map;
@@ -27,6 +30,7 @@ public class MemberController {
     private final CommentService commentService;
     private final MemberService memberService;
     private final LikeService likeService;
+    private final RedisUtil redisUtil;
 
     @GetMapping("/members")
     public ResponseEntity<List<MemberResponseDto>> getAllMembers() {
@@ -43,6 +47,10 @@ public class MemberController {
 
     @PostMapping("/members/create")
     public ResponseEntity<MemberResponseDto> createMember(@RequestBody MemberRequestDto memberRequestDto) {
+
+        String verified = redisUtil.getData("AUTHCOMPLETE-" + memberRequestDto.getEmail());
+        if (verified == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "인증이 만료되었습니다.");
+
         Member newMember = memberService.createMember(memberRequestDto);
         return ResponseEntity.ok().body(MemberResponseDto.from(newMember));
     }

@@ -59,6 +59,7 @@ public class PostService {
                 .member(memberRepository.findById(postRequestDto.getMemberId())
                         .orElseThrow(() -> new EntityNotFoundException("사용자가 존재하지 않습니다.")))
                 .comments_count(0L)
+                .like_count(0L)
                 .build();
         return postRepository.save(post);
     }

@@ -63,7 +63,8 @@ function signup(event) {
     alert("회원가입이 완료되었습니다")
     location.reload(true);
   }).fail(function (response) {
-    alert("not ok signup")
+    // alert("not ok signup")
+    alert(response.responseJSON.message)
   })
 }
 
@@ -77,11 +78,11 @@ function isEmail(email_address) {
 }
 
 
-
-
 function checkEmailAndSendAuth(event) {
 
-  let email = event.currentTarget.previousElementSibling.value
+  // let email = event.currentTarget.previousElementSibling.value
+  let email = document.querySelector('#signup-email').value
+
 
   if (!isEmail(email)) {
     alert('이메일 형식이 올바르지 않습니다.')
@@ -102,9 +103,15 @@ function checkEmailAndSendAuth(event) {
 
   $.ajax(settings).done(function (response) {
     if (response.available) {
+
       sendauth(email)
-      alert('인증번호가 전송되었습니다. 인증번호를 확인 후 입력해주세요.')
+      alert('인증번호가 전송되었습니다. 확인 후 아래에 입력해주세요. \n(유효시간: 5분)')
+
       document.querySelector('#email-auth').disabled = false
+      document.querySelector('#auth-submit').disabled = false
+
+      document.querySelector('#signup-email').disabled = true
+      document.querySelector('#get-auth').disabled = true
 
     } else {
       alert('중복된 이메일입니다.')
@@ -137,6 +144,35 @@ function sendauth(email) {
 
 
 function checkauth(event) {
+  let email = document.querySelector('#signup-email').value
+  let auth_code = document.querySelector('#email-auth').value
+
+  const settings = {
+    "url": `/api/email/checkauth`,
+    "method": "post",
+    "timeout": 0,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "data": JSON.stringify({
+      "email": email,
+      "auth_code": auth_code
+    })
+  };
+
+  $.ajax(settings).done(function (response) {
+    let isValid = response.isValid
+    console.log(isValid)
+    if (isValid) {
+      alert("인증되었습니다.")
+      document.querySelector('#email-auth').disabled = true
+      document.querySelector('#auth-submit').disabled = true
+    } else {
+      alert("인증번호가 일치하지 않습니다.")
+    }
+  }).fail(function (response) {
+    alert("not ok checkauth")
+  })
 
 }
 

@@ -25,6 +25,9 @@ public class MemberService {
     }
 
     public Member createMember(MemberRequestDto memberRequestDto) {
+
+        // password 암호화 필요
+
         Member newMember = Member.builder()
                 .email(memberRequestDto.getEmail())
                 .password(memberRequestDto.getPassword())

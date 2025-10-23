@@ -17,6 +17,7 @@ public class PostResponseDto {
     private String content;
     private String interested;
     private Long commentsCount;
+    private Long likeCount;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 
@@ -26,6 +27,7 @@ public class PostResponseDto {
         this.content = post.getContent();
         this.interested = post.getInterested();
         this.commentsCount = post.getComments_count();
+        this.likeCount = post.getLike_count();
         this.createdAt = post.getCreatedAt();
         this.modifiedAt = post.getModifiedAt();
     }
@@ -37,6 +39,7 @@ public class PostResponseDto {
                 post.getContent(),
                 post.getInterested(),
                 post.getComments_count(),
+                post.getLike_count(),
                 post.getCreatedAt(),
                 post.getModifiedAt()
         );

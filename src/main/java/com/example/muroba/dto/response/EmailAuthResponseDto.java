@@ -1,5 +1,6 @@
-package com.example.muroba.dto.request;
+package com.example.muroba.dto.response;
 
+import com.example.muroba.entity.Post;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmailCodeRequestDto {
+public class EmailAuthResponseDto {
     private String email;
-    private String code;
+    private Boolean isValid;
 }

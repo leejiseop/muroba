@@ -145,11 +145,11 @@
       <i class="fa-solid fa-language"></i><i class="fa-regular fa-face-smile"></i>
     </div>
     <div class="login__title">그 곳은 어떤지, 물어봐!</div>
-    <form class="login" id="login-form">
+    <form class="login" id="login-form" name="login-form" th:action="@{/login}" method="post">
       <p class="title">Log in</p>
-      <input id="signin-email" type="text" placeholder="Username" autofocus />
+      <input id="signin-email" type="text" name="username" placeholder="Email" autofocus />
       <i class="fa fa-user"></i>
-      <input id="signin-password" type="password" placeholder="Password" />
+      <input id="signin-password" type="password" name="password" placeholder="Password" />
       <i class="fa fa-key"></i>
       <a href="#" data-bs-toggle="modal" data-bs-target="#passwordModal">비밀번호를 잊으셨나요?</a>
       <a href="#" data-bs-toggle="modal" data-bs-target="#signupModal">MUROBA 계정이 없으신가요?</a>

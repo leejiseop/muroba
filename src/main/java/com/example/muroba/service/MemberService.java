@@ -1,10 +1,12 @@
 package com.example.muroba.service;
 
+import com.example.muroba.config.SecurityConfig;
 import com.example.muroba.dto.request.MemberRequestDto;
 import com.example.muroba.entity.Member;
 import com.example.muroba.repository.MemberRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +16,7 @@ import java.util.List;
 public class MemberService {
     private final MemberRepository memberRepository;
 //    private final LikeMemberRepository likeMemberRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public List<Member> getAllMembers() {
         return memberRepository.findAll();
@@ -26,13 +29,14 @@ public class MemberService {
 
     public Member createMember(MemberRequestDto memberRequestDto) {
 
-        // password 암호화 필요
+        // 회원 중복 검증 -> 동일 이메일?
 
         Member newMember = Member.builder()
                 .email(memberRequestDto.getEmail())
-                .password(memberRequestDto.getPassword())
+                .password(bCryptPasswordEncoder.encode(memberRequestDto.getPassword()))
                 .nickname(memberRequestDto.getNickname())
                 .country(memberRequestDto.getCountry())
+                .role("ROLE_USER") // 임시
                 .build();
         return memberRepository.save(newMember);
     }

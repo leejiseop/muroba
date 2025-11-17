@@ -20,6 +20,10 @@ document.getElementById("login_skip").addEventListener("click", function () {
   })
 });
 
+function signin(event) {
+  alert('signin')
+}
+
 function signup(event) {
 
   let email = document.querySelector('#signup-email').value

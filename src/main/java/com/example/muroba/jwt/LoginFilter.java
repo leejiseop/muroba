@@ -13,6 +13,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.Iterator;
 
 @RequiredArgsConstructor
@@ -51,6 +52,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
         System.out.println("successfulAuthentication, ok");
         System.out.println(token);
+
     }
 
     //로그인 실패시 실행하는 메소드

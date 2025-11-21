@@ -32,6 +32,7 @@ public class ViewController {
 
         // Session Login
         // JWT로 로그인해도 동일하게 사용 가능한가?
+        // -> 가능! 기본적으로는 stateless이지만 동작하는 동안 잠시 세션이 생성돼서 세션처럼 사용 가능하다
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //
 //        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();

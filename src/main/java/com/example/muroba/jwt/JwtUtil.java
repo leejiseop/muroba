@@ -38,7 +38,9 @@ public class JwtUtil {
     public Boolean isExpired(String token) {
         return Jwts.parser().verifyWith(secretKey).build()
                 .parseSignedClaims(token).getPayload()
-                .getExpiration().before(new Date()); // 현재 시간값 기준으로 만료가 되었는지
+//                .getExpiration().before(new Date()); // 현재 시간값 기준으로 만료가 되었는지
+                .getExpiration().before(new Date(System.currentTimeMillis())); // 현재 시간값 기준으로 만료가 되었는지
+
     }
 
     // 토큰 생성

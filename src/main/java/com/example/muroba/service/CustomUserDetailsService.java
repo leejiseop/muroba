@@ -22,6 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String useremail) throws UsernameNotFoundException {
 
         System.out.println("UserDetailsService -> CustomUserDetailsService -> loadUserByUsername");
+        System.out.println("");
         Member findmember = memberRepository.findByEmail(useremail)
                 .orElseThrow( () -> new EntityNotFoundException("사용자가 존재하지 않습니다"));
         System.out.println("loadUserByUsername findByEmail done");

@@ -21,7 +21,40 @@ document.getElementById("login_skip").addEventListener("click", function () {
 });
 
 function signin(event) {
-  alert('signin')
+
+  // username=test@example.com&password=1234
+  $.ajax({
+    url: "/login",
+    type: "POST",
+    data: {
+      username: $("#signin-email").val(), // spring security 지정 변수명
+      password: $("#signin-password").val()
+    },
+    success: function (data, textStatus, request) {
+      alert("로그인 성공");
+      console.log("");
+      console.log("-----------------------------------------");
+      console.log("[header all] : " + request.getAllResponseHeaders());
+      console.log("-----------------------------------------");
+      console.log("[header authorization] : " + request.getResponseHeader('authorization'));
+      console.log("-----------------------------------------");
+      console.log("[textStatus] : " + JSON.stringify(textStatus));
+      console.log("-----------------------------------------");
+      console.log("[response data] : " + JSON.stringify(data));
+      console.log("=========================================");
+      console.log("");
+
+      // localstorage에 토큰 저장
+
+      // window.location.href = "/threads";
+      location.replace = "./1_threads.html";
+      // 그냥 함수 실행
+    },
+    error: function (err) {
+      alert("로그인 실패");
+    }
+  });
+
 }
 
 function signup(event) {

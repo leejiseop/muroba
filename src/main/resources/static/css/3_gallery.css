@@ -22,7 +22,7 @@
     /* padding: 20px; */
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: start;
 }
 
 .gallery-image img {
@@ -62,12 +62,31 @@
     transition: background-color 0.3s ease;
 }
 
+.transparent-box-upload {
+    color: gray;
+    font-size: 35px;
+    height: 250px;
+    width: 350px;
+    line-height: 250px;
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.3s ease;
+}
+
 .img-box:hover img {
     transform: scale(1.1);
 }
 
 .img-box:hover .transparent-box {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.img-box:hover .transparent-box-upload {
+    background-color: rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+    color: white;
 }
 
 .img-box:hover .caption {

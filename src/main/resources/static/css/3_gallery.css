@@ -1,3 +1,161 @@
 #navbar-settings {
     background-color: rgba(49, 68, 173, 0.8);
 }
+
+/* https://codepen.io/heyDante/pen/bxEYOw */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.heading {
+    text-align: center;
+    font-size: 2.0em;
+    letter-spacing: 1px;
+    padding: 40px;
+    color: white;
+}
+
+.gallery-image {
+    /* padding: 20px; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.gallery-image img {
+    height: 250px;
+    width: 350px;
+    transform: scale(1.0);
+    transition: transform 0.4s ease;
+}
+
+.img-box {
+    box-sizing: content-box;
+    margin: 10px;
+    height: 250px;
+    width: 350px;
+    overflow: hidden;
+    display: inline-block;
+    color: white;
+    position: relative;
+    background-color: white;
+}
+
+.caption {
+    position: absolute;
+    bottom: 5px;
+    left: 20px;
+    opacity: 0.0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.transparent-box {
+    height: 250px;
+    width: 350px;
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: background-color 0.3s ease;
+}
+
+.img-box:hover img {
+    transform: scale(1.1);
+}
+
+.img-box:hover .transparent-box {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.img-box:hover .caption {
+    transform: translateY(-20px);
+    opacity: 1.0;
+}
+
+.img-box:hover {
+    cursor: pointer;
+}
+
+.caption>p:nth-child(2) {
+    font-size: 0.8em;
+}
+
+.opacity-low {
+    opacity: 0.5;
+}
+
+.loading-button {
+    width: 200px;
+    height: 62px;
+    position: relative;
+    background: #6c8bcd;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.loading-button:active {
+    background: #465b89;
+}
+
+.loading-button-text {
+    font-size: 17px;
+    color: white;
+    transition: all 0.2s;
+}
+
+.loading-button-circle .loading-button-text {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.loading-button-circle::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 4px solid transparent;
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: button-loading-spinner 0.4s linear infinite;
+}
+
+@keyframes button-loading-spinner {
+    from {
+        transform: rotate(0turn);
+    }
+
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+.control_button {
+    cursor: pointer;
+    margin: 3px;
+    padding: 17px;
+    font-size: 1.4em;
+    color: gray;
+    background-color: #dddddd;
+    border-radius: 8px;
+    border: #cccccc solid 2px;
+    /* box-shadow: 1px 1px 2px gray */
+}
+
+.control_button:hover {
+    background-color: #cccccc;
+    color: gray;
+}
+
+.control_button:active {
+    transform: scale(0.9);
+}

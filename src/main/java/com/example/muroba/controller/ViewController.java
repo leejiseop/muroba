@@ -54,22 +54,22 @@ public class ViewController {
         return "2_messages";
     }
 
+    @GetMapping("/gallery")
+    public String gallery(Model model) {
+
+        return "3_gallery";
+    }
+
     @GetMapping("/mypage")
     public String mypage(Model model) {
 
-        return "3_mypage";
+        return "4_mypage";
     }
 
     @GetMapping("/mypage_modify")
     public String mypage_modify(Model model) {
 
-        return "3_mypage_modify";
-    }
-
-    @GetMapping("/gallery")
-    public String gallery(Model model) {
-
-        return "4_gallery";
+        return "4_mypage_modify";
     }
 
 //    @GetMapping("/post-test")

@@ -11,6 +11,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -28,6 +29,16 @@ public class SecurityConfig {
     //AuthenticationManager가 인자로 받을 AuthenticationConfiguraion 객체 생성자 주입
     private final AuthenticationConfiguration authenticationConfiguration;
     private final JwtUtil jwtUtil;
+    private final RedisUtil redisUtil;
+
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return web -> {
+            web.ignoring()
+                    .requestMatchers("/css/**", "/js/**", "/img/**");
+//                    .requestMatchers("/", "/api/members/**", "/api/email/**", "/login");
+        };
+    }
 
     //AuthenticationManager(interface) Bean 등록
     @Bean
@@ -56,15 +67,11 @@ public class SecurityConfig {
         // JWT 방식
 
         // JWT를 사용할 땐 session이 stateless 상태이기 때문에, 특별히 CSRF 공격을 방어할 필요는 없다
-        httpSecurity
-                .csrf((auth) -> auth.disable());
-
+        //http basic 인증 방식 disable
         //From 로그인 방식 disable
         httpSecurity
-                .formLogin((auth) -> auth.disable());
-
-        //http basic 인증 방식 disable
-        httpSecurity
+                .csrf((auth) -> auth.disable())
+                .formLogin((auth) -> auth.disable())
                 .httpBasic((auth) -> auth.disable());
 
         httpSecurity
@@ -72,8 +79,7 @@ public class SecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         httpSecurity
-                .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration), jwtUtil), UsernamePasswordAuthenticationFilter.class);
-        httpSecurity
+                .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration), jwtUtil, redisUtil), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new JwtFilter(jwtUtil), LoginFilter.class);
 
         httpSecurity
@@ -108,7 +114,6 @@ public class SecurityConfig {
 
         // session 방식
         /*
-
 
         httpSecurity
                 .csrf((auth) -> auth.disable() // 임시

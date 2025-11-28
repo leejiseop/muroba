@@ -1,4 +1,4 @@
-package com.example.muroba.service;
+package com.example.muroba.jwt;
 
 import com.example.muroba.dto.CustomUserDetails;
 import com.example.muroba.entity.Member;
@@ -10,8 +10,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
@@ -21,7 +19,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String useremail) throws UsernameNotFoundException {
 
-        System.out.println("UserDetailsService -> CustomUserDetailsService -> loadUserByUsername");
+        System.out.println("CustomUserDetailsService -> loadUserByUsername");
         System.out.println("");
         Member findmember = memberRepository.findByEmail(useremail)
                 .orElseThrow( () -> new EntityNotFoundException("사용자가 존재하지 않습니다"));

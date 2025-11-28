@@ -1,5 +1,7 @@
 package com.example.muroba.jwt;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -36,11 +38,24 @@ public class JwtUtil {
     }
 
     public Boolean isExpired(String token) {
-        return Jwts.parser().verifyWith(secretKey).build()
-                .parseSignedClaims(token).getPayload()
-//                .getExpiration().before(new Date()); // 현재 시간값 기준으로 만료가 되었는지
-                .getExpiration().before(new Date(System.currentTimeMillis())); // 현재 시간값 기준으로 만료가 되었는지
+//        return Jwts.parser().verifyWith(secretKey).build()
+//                .parseSignedClaims(token).getPayload()
+////                .getExpiration().before(new Date()); // 현재 시간값 기준으로 만료가 되었는지
+//                .getExpiration().before(new Date(System.currentTimeMillis())); // 현재 시간값 기준으로 만료가 되었는지
 
+        try {
+            Claims claims = Jwts.parser()
+                    .verifyWith(secretKey)
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload();
+
+            return claims.getExpiration().before(new Date());
+
+        } catch (ExpiredJwtException ex) {
+            // ex.getClaims() 로 사용자 정보 꺼낼 수도 있음
+            return true;
+        }
     }
 
     // 토큰 생성

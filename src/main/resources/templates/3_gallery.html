@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" , xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUROBA</title>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <!-- Font Awesome CDN (v6) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- css -->
+    <link rel="stylesheet" href="css/muroba.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="stylesheet" href="css/3_gallery.css" />
+    <!-- live server -->
+    <link rel="stylesheet" href="../static/css/muroba.css" />
+    <link rel="stylesheet" href="../static/css/navbar.css" />
+    <link rel="stylesheet" href="../static/css/3_gallery.css" />
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div
+        style="display: flex; flex-direction: column; position: fixed; top: calc(100% - 200px); left: calc(50% + 280px); z-index: 99;">
+        <i class="fa-solid fa-arrow-up control_button" onclick="totop()"></i>
+        <i class="fa-solid fa-arrow-down control_button" onclick="tobottom()"></i>
+    </div>
+
+    <!-- https://codepen.io/hanlinC/pen/pomyyo -->
+    <header>
+
+        <a class="header__logo">MUROBA</a>
+
+        <nav class="menu">
+            <a th:href="@{/threads}" class="navbar-item" id="navbar-threads">Threads</a>
+            <a th:href="@{/messages}" class="navbar-item" id="navbar-messages">Messages</a>
+            <a th:href="@{/gallery}" class="navbar-item" id="navbar-gallery">Gallery</a>
+            <a th:href="@{/mypage}" class="navbar-item" id="navbar-mypage">MyPage</a>
+        </nav>
+
+    </header>
+
+    <div class="content-item" id="content-gallery">
+        <div class="content-padding">
+            <span>asdf</span>
+            <div class="gallery-image">
+                <div class="img-box">
+                    <img src="https://picsum.photos/350/250?image=444" alt="" />
+                    <div class="transparent-box">
+                        <div class="caption">
+                            <p>Library</p>
+                            <p class="opacity-low">Architect Design</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img src="https://picsum.photos/350/250/?image=232" alt="" />
+                    <div class="transparent-box">
+                        <div class="caption">
+                            <p>Night Sky</p>
+                            <p class="opacity-low">Cinematic</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img src="https://picsum.photos/350/250/?image=431" alt="" />
+                    <div class="transparent-box">
+                        <div class="caption">
+                            <p>Tea Talk</p>
+                            <p class="opacity-low">Composite</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img src="https://picsum.photos/350/250?image=474" alt="" />
+                    <div class="transparent-box">
+                        <div class="caption">
+                            <p>Road</p>
+                            <p class="opacity-low">Landscape</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img src="https://picsum.photos/350/250?image=344" alt="" />
+                    <div class="transparent-box">
+                        <div class="caption">
+                            <p>Sea</p>
+                            <p class="opacity-low">Cityscape</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img src="https://picsum.photos/350/250?image=494" alt="" />
+                    <div class="transparent-box">
+                        <div class="caption">
+                            <p>Vintage</p>
+                            <p class="opacity-low">Cinematic</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img src="https://picsum.photos/350/250?image=444" alt="" />
+                    <div class="transparent-box">
+                        <div class="caption">
+                            <p>Library</p>
+                            <p class="opacity-low">Architect Design</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img src="https://picsum.photos/350/250/?image=232" alt="" />
+                    <div class="transparent-box">
+                        <div class="caption">
+                            <p>Night Sky</p>
+                            <p class="opacity-low">Cinematic</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img src="https://picsum.photos/350/250/?image=431" alt="" />
+                    <div class="transparent-box">
+                        <div class="caption">
+                            <p>Tea Talk</p>
+                            <p class="opacity-low">Composite</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img src="https://picsum.photos/350/250?image=474" alt="" />
+                    <div class="transparent-box">
+                        <div class="caption">
+                            <p>Road</p>
+                            <p class="opacity-low">Landscape</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img src="https://picsum.photos/350/250?image=344" alt="" />
+                    <div class="transparent-box">
+                        <div class="caption">
+                            <p>Sea</p>
+                            <p class="opacity-low">Cityscape</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img src="https://picsum.photos/350/250?image=494" alt="" />
+                    <div class="transparent-box">
+                        <div class="caption">
+                            <p>Vintage</p>
+                            <p class="opacity-low">Cinematic</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img src="https://picsum.photos/350/250?image=444" alt="" />
+                    <div class="transparent-box">
+                        <div class="caption">
+                            <p>Library</p>
+                            <p class="opacity-low">Architect Design</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img src="https://picsum.photos/350/250/?image=232" alt="" />
+                    <div class="transparent-box">
+                        <div class="caption">
+                            <p>Night Sky</p>
+                            <p class="opacity-low">Cinematic</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img src="https://picsum.photos/350/250/?image=431" alt="" />
+                    <div class="transparent-box">
+                        <div class="caption">
+                            <p>Tea Talk</p>
+                            <p class="opacity-low">Composite</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img src="https://picsum.photos/350/250?image=474" alt="" />
+                    <div class="transparent-box">
+                        <div class="caption">
+                            <p>Road</p>
+                            <p class="opacity-low">Landscape</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img src="https://picsum.photos/350/250?image=344" alt="" />
+                    <div class="transparent-box">
+                        <div class="caption">
+                            <p>Sea</p>
+                            <p class="opacity-low">Cityscape</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img src="https://picsum.photos/350/250?image=494" alt="" />
+                    <div class="transparent-box">
+                        <div class="caption">
+                            <p>Vintage</p>
+                            <p class="opacity-low">Cinematic</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 50px; margin-bottom: 150px;">
+                <button type="button" class="loading-button" id="loading-button">
+                    <span class="loading-button-text" id="loading-button-text">더보기</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+<script src="js/muroba.js"></script>
+<script src="js/navbar.js"></script>
+<script src="js/3_gallery.js"></script>
+
+<!-- live server -->
+<script src="../static/js/muroba.js"></script>
+<script src="../static/js/navbar.js"></script>
+<script src="../static/js/3_gallery.js"></script>
+
+</html>

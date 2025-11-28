@@ -44,11 +44,8 @@ function signin(event) {
       console.log("=========================================");
       console.log("");
 
-      // localstorage에 토큰 저장
-
-      // window.location.href = "/threads";
-      location.replace = "./1_threads.html";
-      // 그냥 함수 실행
+      window.location.href = "/threads";
+      // location.replace = "./1_threads.html";
     },
     error: function (err) {
       alert("로그인 실패");

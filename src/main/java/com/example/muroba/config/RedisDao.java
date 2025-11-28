@@ -39,14 +39,4 @@ public class RedisDao {
         redisTemplate.delete(key);
     }
 
-
-
-    // RedisDao와 RedisUtil이 무슨 차이지???
-
-
-
-
-
-
-
 }

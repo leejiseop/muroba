@@ -39,8 +39,10 @@ dependencies {
 //	aws
 //	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 //	https://mvnrepository.com/artifact/io.awspring.cloud/spring-cloud-aws-starter-s3
-	implementation 'io.awspring.cloud:spring-cloud-aws-starter-s3:3.3.1'
-//	implementation 'io.awspring.cloud:spring-cloud-aws-starter-s3'
+//	implementation 'io.awspring.cloud:spring-cloud-aws-starter-s3:3.3.1'
+	implementation platform('io.awspring.cloud:spring-cloud-aws-dependencies:3.1.1')
+	implementation 'io.awspring.cloud:spring-cloud-aws-starter-s3'
+
 
 	// JWT
 //	0.11.5

@@ -61,7 +61,7 @@ public class SecurityConfig {
                         .requestMatchers("/threads/**", "/messages/**",
                                 "/mypage/**", "/mypage_modify/**", "/gallery/**"
                                 ).hasAnyRole("ADMIN", "USER")
-                        .anyRequest().authenticated() // 나머지 모든 경로들 로그인 인증 필요
+                        .anyRequest().permitAll() // 나머지 모든 경로들 로그인 인증 필요
                 );
 
         // JWT 방식

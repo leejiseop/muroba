@@ -1,23 +1,25 @@
 package com.example.muroba.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.muroba.dto.request.ImageRequestDto;
+import com.example.muroba.service.ImageService;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.InputStream;
-
 @RestController
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@RequestMapping("/images")
 public class ImageController {
+    ImageService imageService;
 
-//    @PostMapping("/multipart-file")
-//    public String uploadMultipleFile(@RequestPart("file")MultipartFile multipartFile) {
-//        try (InputStream inputStream = multipartFile.getInputStream()) {
-//            String fileName = multipartFile.getOriginalFilename();
-//            long contentLength = multipartFile.getSize();
-//
-//
-//        }
-//    }
-
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public String create(@RequestPart MultipartFile file,
+                         @RequestPart ImageRequestDto imageRequestDto) {
+        return imageService.create(file, imageRequestDto.getMemberId(), imageRequestDto.getComment());
+    }
 }

@@ -16,9 +16,8 @@ import java.util.UUID;
 public class Image {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    // GenerationType.UUID으로 id를 생성하면 insert 전에 id값을 미리 알 수 있다 -> 외부 리소스 매핑시 편리 (S3)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false)
     private Long memberId;

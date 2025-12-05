@@ -12,7 +12,7 @@
 
 .heading {
     text-align: center;
-    font-size: 2.0em;
+    font-size: 20.0em;
     letter-spacing: 1px;
     padding: 40px;
     color: white;
@@ -22,21 +22,21 @@
     /* padding: 20px; */
     display: flex;
     flex-wrap: wrap;
-    justify-content: start;
+    justify-content: flex-start;
 }
 
 .gallery-image img {
-    height: 250px;
-    width: 350px;
+    height: 190px;
+    width: 250px;
     transform: scale(1.0);
     transition: transform 0.4s ease;
 }
 
 .img-box {
     box-sizing: content-box;
-    margin: 10px;
-    height: 250px;
-    width: 350px;
+    margin: 0px;
+    height: 190px;
+    width: 250px;
     overflow: hidden;
     display: inline-block;
     color: white;
@@ -45,6 +45,7 @@
 }
 
 .caption {
+    font-size: 1.5rem;
     position: absolute;
     bottom: 5px;
     left: 20px;
@@ -53,8 +54,8 @@
 }
 
 .transparent-box {
-    height: 250px;
-    width: 350px;
+    height: 190px;
+    width: 250px;
     background-color: rgba(0, 0, 0, 0);
     position: absolute;
     top: 0;
@@ -64,9 +65,9 @@
 
 .transparent-box-upload {
     color: gray;
-    font-size: 35px;
-    height: 250px;
-    width: 350px;
+    font-size: 25px;
+    height: 190px;
+    width: 250px;
     line-height: 250px;
     background-color: rgba(0, 0, 0, 0);
     position: absolute;
@@ -80,7 +81,7 @@
 }
 
 .img-box:hover .transparent-box {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .img-box:hover .transparent-box-upload {
@@ -161,12 +162,12 @@
 .control_button {
     cursor: pointer;
     margin: 3px;
-    padding: 17px;
-    font-size: 1.4em;
+    padding: 15px;
+    font-size: 2em;
     color: gray;
-    background-color: #dddddd;
+    background-color: #eeeeee;
     border-radius: 8px;
-    border: #cccccc solid 2px;
+    border: #bbbbbb solid 2px;
     /* box-shadow: 1px 1px 2px gray */
 }
 

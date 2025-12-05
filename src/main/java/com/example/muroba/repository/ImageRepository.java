@@ -27,7 +27,10 @@ public class ImageRepository {
     }
 
     public String save(MultipartFile file) {
-        final S3Resource result = s3template.upload(bucketName, file.getOriginalFilename(), getInputStream(file));
+
+        UUID uuid = UUID.randomUUID();
+
+        final S3Resource result = s3template.upload(bucketName, uuid + file.getOriginalFilename(), getInputStream(file));
         return getUrl(result);
     }
 

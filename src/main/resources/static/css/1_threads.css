@@ -358,12 +358,12 @@
 .control_button {
     cursor: pointer;
     margin: 3px;
-    padding: 17px;
-    font-size: 1.4em;
+    padding: 15px;
+    font-size: 2em;
     color: gray;
-    background-color: #dddddd;
+    background-color: #eeeeee;
     border-radius: 8px;
-    border: #cccccc solid 2px;
+    border: #bbbbbb solid 2px;
     /* box-shadow: 1px 1px 2px gray */
 }
 

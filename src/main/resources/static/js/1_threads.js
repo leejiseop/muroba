@@ -188,6 +188,11 @@ function showSlicedPosts(size, page) {
 function write_post(event) {
 
     let text = document.querySelector('#textarea').value
+    if (text == "") {
+        alert('내용을 입력해주세요.')
+        return
+    }
+
     let postData = {
         "memberId": "1", // 임시 하드코딩
         "content": text,
@@ -231,6 +236,10 @@ function save_post(event) {
     let textarea = document.querySelector("#modify_modal_textarea")
     let postId = textarea.dataset.postId
     let newText = textarea.value
+    if (newText == "") {
+        alert('내용을 입력해주세요.')
+        return
+    }
 
     let originalText = document.querySelector(`#post_${postId}`)
 
@@ -278,6 +287,10 @@ function write_comment(event) {
     let textarea = document.querySelector('#comment_textarea')
     let postId = textarea.dataset.postId
     let newText = textarea.value
+    if (newText == "") {
+        alert('내용을 입력해주세요.')
+        return
+    }
 
     let originalText = document.querySelector(`#post_${postId}`)
 

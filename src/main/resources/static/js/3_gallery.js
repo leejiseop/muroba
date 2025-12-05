@@ -11,9 +11,13 @@ function tobottom() {
 const slice_size = 10
 let slice_page = 0
 let is_last = false
-const contentId = '#gallery-image';
+const galleryId = '#gallery-image';
 const loading_button = document.querySelector('#loading-button')
 const loading_button_text = document.querySelector('#loading-button-text')
+
+document.addEventListener("DOMContentLoaded", function () {
+    showSlicedImages(slice_size, slice_page)
+});
 
 loading_button.addEventListener('click', function () {
     if (is_last) {
@@ -23,14 +27,13 @@ loading_button.addEventListener('click', function () {
     }
     loading_button.classList.add('loading-button-circle')
     setTimeout(() => {
-        showSlicedPosts(slice_size, slice_page)
-        // showImages()
+        showSlicedImages(slice_size, slice_page)
         loading_button.classList.remove('loading-button-circle')
     }, 500);
 })
 
 
-function showSlicedPosts(size, page) {
+function showSlicedImages(size, page) {
 
     if (slice_page <= -1) {
         console.log('마지막 페이지입니다.')
@@ -39,7 +42,7 @@ function showSlicedPosts(size, page) {
 
     $.ajax({
         type: "GET",
-        url: `/api/slicing-posts?size=${size}&page=${page}`,
+        url: `/api/slicing-images?size=${size}&page=${page}`,
         success: function (response) {
 
             if (response.last == true) {
@@ -49,53 +52,34 @@ function showSlicedPosts(size, page) {
                 slice_page += 1
             }
 
-            let post_list = response.content
+            let image_list = response.content
 
-            for (let i = 0; i < slice_size; i++) {
-                let post = post_list[i]
+            for (let i = 0; i < size; i++) {
+                let image = image_list[i]
 
-                let postId = post['id']
-                let memberId = post['memberId']
-                let content = post['content']
-                let commentsCount = post['commentsCount']
-                let interested = post['interested']
-                let createdAt = post['createdAt']
-                let modifiedAt = post['modifiedAt']
+                let path = image['path']
+                let nickname = image['nickname']
+                let comment = image['comment']
+                let country = image['country']
 
                 let temp_html =
                     `
-                    <li>
-                        <div class="comment-main-level">
-                            <div class="comment-avatar" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="open_profile(event)">
-                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="">
-                            </div>
-                            <div class="comment-box" data-post-id="${postId}" data-member-id="${memberId}" onclick="open_comment(event)">
-                                <div class="comment-head">
-                                    <h6 class="comment-name by-author">
-                                        <a href="#">${memberId}</a>
-                                    </h6>
-                                    <span>post_id : ${postId}</span>
-                                    <span>${createdAt}</span>
-                                    <span>${modifiedAt}</span>
-                                    <span>${interested}</span>
-                                    <span>${commentsCount}</span>
-                                    <i class="fa-solid fa-trash" data-post-id="${postId}" onclick="delete_post(event)"></i>
-                                    <i class="fa-solid fa-pen" data-post-id="${postId}" onclick="open_modify(event)" data-bs-toggle="modal" data-bs-target="#exampleModal2"></i>
-                                    <i class="fa fa-heart" data-post-id="${postId}" onclick="like_post(event)"></i>
-                                </div>
-                                <pre class="comment-content" id="post_${postId}">${content}</pre>
+                    <div class="img-box">
+                        <img src="${path}" alt="" />
+                        <div class="transparent-box">
+                            <div class="caption">
+                                <p>${nickname}</p>
+                                <p class="opacity-low">${country}</p>
                             </div>
                         </div>
-                        <ul class="comments-list reply-list" id="post_${postId}_comment_list">
-                        </ul>
-                    </li>
+                    </div>
                     `
 
-                $(contentId).append(temp_html)
+                $(galleryId).append(temp_html)
             }
         }
     }).fail(function (e) {
-        console.log('showSlicedPosts fail')
+        console.log('showSlicedImages fail')
     });
 }
 
@@ -120,7 +104,7 @@ document.getElementById("image_input").addEventListener("change", function () {
     formData.append("imageRequestDto", new Blob([JSON.stringify(jsonData)], { type: "application/json" }))
 
     $.ajax({
-        url: "/images",
+        url: "/api/image",
         type: "POST",
         data: formData,
         // enctype: "multipart/form-data",
@@ -135,4 +119,37 @@ document.getElementById("image_input").addEventListener("change", function () {
             alert("에러 발생: " + error);
         }
     });
+});
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('.image-upload-wrap').hide();
+
+            $('.file-upload-image').attr('src', e.target.result);
+            $('.file-upload-content').show();
+
+            // $('.image-title').html(input.files[0].name);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+
+    } else {
+        removeUpload();
+    }
+}
+
+function removeUpload() {
+    $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+    $('.file-upload-content').hide();
+    $('.image-upload-wrap').show();
+}
+$('.image-upload-wrap').bind('dragover', function () {
+    $('.image-upload-wrap').addClass('image-dropping');
+});
+$('.image-upload-wrap').bind('dragleave', function () {
+    $('.image-upload-wrap').removeClass('image-dropping');
 });

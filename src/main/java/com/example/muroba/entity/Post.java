@@ -39,6 +39,7 @@ public class Post extends TimeStamped {
     @Column(nullable = false)
     private Long like_count;
 
+    @Builder.Default
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
 

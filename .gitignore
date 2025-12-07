@@ -41,3 +41,4 @@ application.yaml
 application.yml
 src/main/resources/application.yaml
 *.yaml
+.env

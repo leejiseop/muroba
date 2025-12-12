@@ -75,3 +75,8 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+// Github Actions + AWS CodeDeploy CI/CD
+jar {
+	enabled = false
+}

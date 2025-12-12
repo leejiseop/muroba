@@ -6,10 +6,10 @@ on:
       - main
 
 # 본인이 설정한 값을 여기서 채워넣습니다.
-# 리전, 버킷 이름, CodeDeploy 앱 이름, CodeDeploy 배포 그룹 이름
+# github actions 용 codedeploy s3 리전, s3 버킷 이름, CodeDeploy 앱 이름, CodeDeploy 배포 그룹 이름
 env:
-  AWS_REGION: ${{ secrets.AWS_S3_REGION }}
-  S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET }}
+  AWS_REGION: ${{ secrets.ACTIONS_AWS_S3_REGION }}
+  S3_BUCKET_NAME: ${{ secrets.ACTIONS_AWS_S3_BUCKET }}
   CODE_DEPLOY_APPLICATION_NAME: muroba-codedeploy-app
   CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: muroba-codedeploy-app-group
 

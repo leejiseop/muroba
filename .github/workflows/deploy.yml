@@ -34,6 +34,12 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
+    # create application.yaml
+    - uses: actions/checkout@v5
+    - run: touch ./src/main/resources/application.yaml
+    - run: echo "${{ secrets.APPLICATION_YAML }}" > ./src/main/resources/application.yaml
+#    - run: cat ./src/main/resources/application.yaml
+
     # (3) Gradle build (Test 제외)
     - name: Build with Gradle
       uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee

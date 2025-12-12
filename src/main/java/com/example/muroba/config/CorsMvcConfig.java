@@ -10,6 +10,6 @@ public class CorsMvcConfig implements WebMvcConfigurer {
         corsRegistry
                 .addMapping("/**")
                 .allowedOrigins("http://localhost:3000");
-    } // 테스트 주석 추가
+    }
 
 }

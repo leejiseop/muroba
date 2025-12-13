@@ -29,6 +29,10 @@ public class EmailController {
 
     @PostMapping("/email/sendauth")
     public ResponseEntity<Map<String, Object>> sendauth(@RequestBody EmailRequestDto emailRequestDto) {
+
+        System.out.println("/email/sendauth - sendauth");
+        System.out.println(emailRequestDto.getEmail());
+
         String authCode = emailService.sendAuthCode(emailRequestDto.getEmail());
         redisUtil.setDataExpire("AUTH-" + emailRequestDto.getEmail(), authCode, 60 * 5L);
 

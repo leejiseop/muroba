@@ -35,10 +35,15 @@ jobs:
         java-version: '17'
 
     # create application.yaml
-    - uses: actions/checkout@v5
-    - run: touch ./src/main/resources/application.yaml
-    - run: echo "${{ secrets.APPLICATION_YAML }}" > ./src/main/resources/application.yaml
+#    - uses: actions/checkout@v5
+#    - run: touch ./src/main/resources/application.yaml
+#    - run: echo "${{ secrets.APPLICATION_YAML }}" > ./src/main/resources/application.yaml
 #    - run: cat ./src/main/resources/application.yaml
+    - name: Set YML
+      run: |
+        mkdir -p src/main/resources
+        echo "${{ secrets.APPLICATION_YAML }}" | base64 --decode > src/main/resources/application.yaml
+        find src
 
     # (3) Gradle build (Test 제외)
     - name: Build with Gradle

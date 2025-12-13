@@ -60,7 +60,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
         Cookie access_token_cookie = new Cookie("access_token", access_token);
         access_token_cookie.setHttpOnly(true);
-        access_token_cookie.setSecure(false); // https 전환시 수정해야함
+        access_token_cookie.setSecure(true); // https 전환시 수정해야함
         access_token_cookie.setPath("/");
         access_token_cookie.setMaxAge(60*5); // 5분
 
@@ -72,7 +72,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
         Cookie refresh_token_cookie = new Cookie("refresh_token", refresh_token);
         refresh_token_cookie.setHttpOnly(true);
-        refresh_token_cookie.setSecure(false); // https 전환시 수정해야함
+        refresh_token_cookie.setSecure(true); // https 전환시 수정해야함
         refresh_token_cookie.setPath("/");
         refresh_token_cookie.setMaxAge(60*60*24*14); // 14일
 

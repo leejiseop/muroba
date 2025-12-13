@@ -55,7 +55,7 @@ public class PostController {
     public ResponseEntity<Slice<PostResponseDto>> getAllSlicingPosts(@PageableDefault(size = 10, page = 0) Pageable pageable) {
         return ResponseEntity.ok().body(postService.getAllSlicingPosts(pageable)
                 .map(PostResponseDto::new));
-    } // test
+    }
 
     @PostMapping("/posts/create")
     public ResponseEntity<PostResponseDto> createPost(@RequestBody PostRequestDto postRequestDto) {

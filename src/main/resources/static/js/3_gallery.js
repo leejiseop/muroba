@@ -42,7 +42,7 @@ function showSlicedImages(size, page) {
 
     $.ajax({
         type: "GET",
-        url: `/api/slicing-images?size=${size}&page=${page}`,
+        url: `${origin}/api/slicing-images?size=${size}&page=${page}`,
         success: function (response) {
 
             if (response.last == true) {
@@ -104,7 +104,7 @@ document.getElementById("image_input").addEventListener("change", function () {
     formData.append("imageRequestDto", new Blob([JSON.stringify(jsonData)], { type: "application/json" }))
 
     $.ajax({
-        url: "/api/image",
+        url: `${origin}/api/image`,
         type: "POST",
         data: formData,
         // enctype: "multipart/form-data",

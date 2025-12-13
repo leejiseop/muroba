@@ -3,7 +3,7 @@ document.getElementById("login_skip").addEventListener("click", function () {
   // e.preventDefault();
 
   const settings = {
-    "url": `/test`,
+    "url": `${origin}/test`,
     "method": "GET",
     "timeout": 0,
     "headers": {
@@ -24,7 +24,7 @@ function signin(event) {
 
   // username=test@example.com&password=1234
   $.ajax({
-    url: "/login",
+    url: `${origin}/login`,
     type: "POST",
     data: {
       username: $("#signin-email").val(), // spring security 지정 변수명
@@ -44,7 +44,7 @@ function signin(event) {
       console.log("=========================================");
       console.log("");
 
-      window.location.href = "/threads";
+      window.location.href = `${origin}/threads`;
       // location.replace = "./1_threads.html";
     },
     error: function (err) {
@@ -78,7 +78,7 @@ function signup(event) {
   */
 
   const settings = {
-    "url": `/api/members/create`,
+    "url": `${origin}/api/members/create`,
     "method": "POST",
     "timeout": 0,
     "headers": {
@@ -124,7 +124,7 @@ function checkEmailAndSendAuth(event) {
   }
 
   const settings = {
-    "url": `/api/members/email`,
+    "url": `${origin}/api/members/email`,
     "method": "get",
     "timeout": 0,
     "headers": {
@@ -158,7 +158,7 @@ function checkEmailAndSendAuth(event) {
 
 function sendauth(email) {
   const settings = {
-    "url": `/api/email/sendauth`,
+    "url": `${origin}/api/email/sendauth`,
     "method": "post",
     "timeout": 0,
     "headers": {
@@ -182,7 +182,7 @@ function checkauth(event) {
   let auth_code = document.querySelector('#email-auth').value
 
   const settings = {
-    "url": `/api/email/checkauth`,
+    "url": `${origin}/api/email/checkauth`,
     "method": "post",
     "timeout": 0,
     "headers": {

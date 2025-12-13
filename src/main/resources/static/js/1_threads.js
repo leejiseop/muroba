@@ -75,7 +75,7 @@ function open_comment(event) {
 
         $.ajax({
             type: "GET",
-            url: `api/comments/${postId}`,
+            url: `${origin}/api/comments/${postId}`,
             success: function (comment_dto_list) {
 
                 comment_dto_list.forEach(comment_dto => {
@@ -125,7 +125,7 @@ function showSlicedPosts(size, page) {
 
     $.ajax({
         type: "GET",
-        url: `/api/slicing-posts?size=${size}&page=${page}`,
+        url: `${origin}/api/slicing-posts?size=${size}&page=${page}`,
         success: function (response) {
 
             if (response.last == true) {
@@ -201,7 +201,7 @@ function write_post(event) {
 
     $.ajax({
         type: "post",
-        url: `/api/posts/create`,
+        url: `${origin}/api/posts/create`,
         data: JSON.stringify(postData),
         contentType: "application/json",
         success: function (response) {
@@ -250,7 +250,7 @@ function save_post(event) {
 
     $.ajax({
         type: "put",
-        url: `/api/posts/modify/${postId}`,
+        url: `${origin}/api/posts/modify/${postId}`,
         data: JSON.stringify(updateData),
         contentType: "application/json",
         success: function (response) {
@@ -272,7 +272,7 @@ function delete_post(event) {
 
     $.ajax({
         type: "delete",
-        url: `/api/posts/delete/${postId}`,
+        url: `${origin}/api/posts/delete/${postId}`,
         success: function (response) {
             alert('delete ok')
             location.reload();
@@ -304,7 +304,7 @@ function write_comment(event) {
 
     $.ajax({
         type: "post",
-        url: `/api/comments/${postId}/create`,
+        url: `${origin}/api/comments/${postId}/create`,
         data: JSON.stringify(commentData),
         contentType: "application/json",
         success: function (response) {
@@ -322,7 +322,7 @@ function delete_comment() {
 
     $.ajax({
         type: "delete",
-        url: `/api/comments/delete/${commentId}`,
+        url: `${origin}/api/comments/delete/${commentId}`,
         success: function (response) {
             alert('delete ok')
             location.reload();

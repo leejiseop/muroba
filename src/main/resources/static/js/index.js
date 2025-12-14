@@ -23,6 +23,8 @@ document.getElementById("login_skip").addEventListener("click", function () {
 function signin(event) {
 
   // username=test@example.com&password=1234
+  console.log(`${origin}/login`)
+
   $.ajax({
     url: `${origin}/login`,
     type: "POST",

@@ -49,6 +49,7 @@ function signin(event) {
     },
     error: function (err) {
       alert("로그인 실패");
+      console.log(err)
     }
   });
 

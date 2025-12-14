@@ -22,36 +22,70 @@ document.getElementById("login_skip").addEventListener("click", function () {
 
 function signin(event) {
 
-  // username=test@example.com&password=1234
-  $.ajax({
-    url: `${origin}/login`,
-    type: "POST",
-    data: {
-      username: $("#signin-email").val(), // spring security 지정 변수명
-      password: $("#signin-password").val()
+  const settings = {
+    "url": `${origin}/login`,
+    "method": "post",
+    "timeout": 0,
+    "headers": {
+      "Content-Type": "application/x-www-form-urlencoded",
     },
-    success: function (data, textStatus, request) {
-      alert("로그인 성공");
-      console.log("");
-      console.log("-----------------------------------------");
-      console.log("[header all] : " + request.getAllResponseHeaders());
-      console.log("-----------------------------------------");
-      console.log("[header authorization] : " + request.getResponseHeader('authorization'));
-      console.log("-----------------------------------------");
-      console.log("[textStatus] : " + JSON.stringify(textStatus));
-      console.log("-----------------------------------------");
-      console.log("[response data] : " + JSON.stringify(data));
-      console.log("=========================================");
-      console.log("");
-
-      window.location.href = `${origin}/threads`;
-      // location.replace = "./1_threads.html";
-    },
-    error: function (err) {
-      alert("로그인 실패");
-      console.log(err)
+    "data": {
+      "username": $("#signin-email").val(), // spring security 지정 변수명
+      "password": $("#signin-password").val()
     }
+  };
+
+  $.ajax(settings).done(function (response) {
+    alert("로그인 성공");
+    console.log("");
+    console.log("-----------------------------------------");
+    console.log("[header all] : " + request.getAllResponseHeaders());
+    console.log("-----------------------------------------");
+    console.log("[header authorization] : " + request.getResponseHeader('authorization'));
+    console.log("-----------------------------------------");
+    console.log("[textStatus] : " + JSON.stringify(textStatus));
+    console.log("-----------------------------------------");
+    console.log("[response data] : " + JSON.stringify(data));
+    console.log("=========================================");
+    console.log("");
+
+    window.location.href = `${origin}/threads`;
+    // location.replace = "./1_threads.html";
+  }).fail(function (response) {
+    alert("로그인 실패");
+    console.log(err)
   });
+
+  // username=test@example.com&password=1234
+  // $.ajax({
+  //   url: `${origin}/login`,
+  //   type: "POST",
+  //   data: {
+  //     username: $("#signin-email").val(), // spring security 지정 변수명
+  //     password: $("#signin-password").val()
+  //   },
+  //   success: function (data, textStatus, request) {
+  //     alert("로그인 성공");
+  //     console.log("");
+  //     console.log("-----------------------------------------");
+  //     console.log("[header all] : " + request.getAllResponseHeaders());
+  //     console.log("-----------------------------------------");
+  //     console.log("[header authorization] : " + request.getResponseHeader('authorization'));
+  //     console.log("-----------------------------------------");
+  //     console.log("[textStatus] : " + JSON.stringify(textStatus));
+  //     console.log("-----------------------------------------");
+  //     console.log("[response data] : " + JSON.stringify(data));
+  //     console.log("=========================================");
+  //     console.log("");
+
+  // window.location.href = `${origin}/threads`;
+  //     // location.replace = "./1_threads.html";
+  //   },
+  //   error: function (err) {
+  //     alert("로그인 실패");
+  //     console.log(err)
+  //   }
+  // });
 
 }
 

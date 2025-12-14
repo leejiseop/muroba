@@ -11,9 +11,9 @@ public class CorsMvcConfig implements WebMvcConfigurer {
                 .addMapping("/**")
                 .allowedOrigins("*")
 //                .allowedOrigins("http://localhost:3000"); // react
-                .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE")
+                .allowedMethods("GET", "HEAD", "POST", "PUT", "PATCH", "DELETE")
                 .allowedHeaders("*");
 //                .allowCredentials(true) // true로 설정하면 allowedOrigins("*")와 같이 사용불가 (보안 문제)
-    } // test
+    }
 
 }
